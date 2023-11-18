@@ -1,25 +1,25 @@
-// Shape interface
+
 interface Shape {
     double getArea();
 }
 
-// Rectangle class implementing Shape
+// Rectangle class implementing the Shape interface
 class Rectangle implements Shape {
-    private double length;
     private double width;
+    private double height;
 
-    public Rectangle(double length, double width) {
-        this.length = length;
+    public Rectangle(double width, double height) {
         this.width = width;
+        this.height = height;
     }
 
     @Override
     public double getArea() {
-        return length * width;
+        return width * height;
     }
 }
 
-// Circle class implementing Shape
+// Circle class implementing the Shape interface
 class Circle implements Shape {
     private double radius;
 
@@ -33,7 +33,7 @@ class Circle implements Shape {
     }
 }
 
-// Triangle class implementing Shape
+// Triangle class implementing the Shape interface
 class Triangle implements Shape {
     private double base;
     private double height;
@@ -49,19 +49,16 @@ class Triangle implements Shape {
     }
 }
 
-// Main class to test the Shape interface and its implementations
- class ShapeTest {
+ class demo {
     public static void main(String[] args) {
-        // Test Rectangle
-        Rectangle rectangle = new Rectangle(5, 8);
+        // Creating objects of Rectangle, Circle, and Triangle
+        Rectangle rectangle = new Rectangle(5, 4);
+        Circle circle = new Circle(3);
+        Triangle triangle = new Triangle(6, 8);
+
+        // Calculating and displaying the areas
         System.out.println("Area of Rectangle: " + rectangle.getArea());
-
-        // Test Circle
-        Circle circle = new Circle(4);
         System.out.println("Area of Circle: " + circle.getArea());
-
-        // Test Triangle
-        Triangle triangle = new Triangle(6, 10);
         System.out.println("Area of Triangle: " + triangle.getArea());
     }
 }

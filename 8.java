@@ -1,15 +1,33 @@
+interface play{
+void play();
+}
+ 
+class football implements play{
 
-import java.util.Scanner;
-//Enter the long integer from user using Scanner class
-class LongUsingScanner 
-{
-	public static void main(String[] args) 
-	{
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a long integer : ");
-		long l = sc.nextLong();
-		System.out.println("long integer is : "+l);
-		
-	}
+public static void main(String s[]){
+football obj= new football();
+obj.play();
+}
+public void play(){
+System.out.println("Playing Football");}
+}
+ 
+class voleyball implements play{
 
+public static void main(String s[]){
+voleyball obj1= new voleyball();
+obj1.play();
+}
+public void play(){
+System.out.println("Playing voleyball");}
+}
+ 
+class basketball implements play{
+
+public static void main(String s[]){
+basketball obj2= new basketball();
+obj2.play();
+}
+public void play(){
+System.out.println("Playing basketball");}
 }

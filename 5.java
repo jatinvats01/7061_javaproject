@@ -1,36 +1,45 @@
-import java.util.Scanner;
+interface Resizable {
+  
+    void resizeWidth(int width);
 
- class prog5 {
-    public static void main(String[] args) {
-        // Create a Scanner object to read input from the console
-        Scanner scanner = new Scanner(System.in);
+  void resizeHeight(int height);
+}
 
-        // Prompt the user to enter a double
-        System.out.print("Enter a double: ");
+class Rectangle implements Resizable {
+   
+    private int width;
+    private int height;
 
-        // Check if the next input is a double
-        if (scanner.hasNextDouble()) {
-            // Read the double from the user
-            double userInput = scanner.nextDouble();
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
-            // Display the entered double
-            System.out.println("You entered: " + userInput);
+    public void resizeWidth(int width) {
+        this.width = width;
+    }
 
-            // Check if the entered double is positive, negative, or zero
-            if (userInput > 0) {
-                System.out.println("The entered double is positive.");
-            } else if (userInput < 0) {
-                System.out.println("The entered double is negative.");
-            } else {
-                System.out.println("The entered double is zero.");
-            }
-        } else {
-            // If the input is not a double, display an error message
-            System.out.println("Invalid input. Please enter a valid double.");
-        }
+   
+    public void resizeHeight(int height) {
+        this.height = height;
+    }
 
-        // Close the scanner
-        scanner.close();
+    public void printSize() {
+        System.out.println("Width: " + width + ", Height: " + height);
     }
 }
 
+
+ class Final_size {
+    public static void main(String s[] ) {
+       
+        Rectangle r = new Rectangle(50, 30);
+
+        r.printSize();
+
+      
+        r.resizeWidth(80);
+        r.resizeHeight(40);
+        r.printSize();
+    }
+}
