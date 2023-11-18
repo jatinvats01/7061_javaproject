@@ -1,42 +1,30 @@
 import java.util.Scanner;
 
-class bankaccount {
-    private String accountNumber;
-    private double balance;
+class WordLength {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
+        
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
+       
+        String[] words = inputString.split("\\s+");
+        String smallestWord = words[0];
+        String largestWord = words[0];
 
-    public double getBalance() {
-        return balance;
-    }
+        for (int i = 1; i < words.length; i++) {
+            if (words[i].length() < smallestWord.length()) {
+                smallestWord = words[i];
+            }
+            if (words[i].length() > largestWord.length()) {
+                largestWord = words[i];
+            }
+        }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+        System.out.println("Smallest word: " + smallestWord);
+        System.out.println("Largest word: " + largestWord);
 
-    public static void main(String[] a) {
-        Scanner s = new Scanner(System.in);
-
-        bankaccount myAccount = new bankaccount();
-
-        System.out.print("Enter your account number: ");
-        String accountNumber = s.nextLine();
-        myAccount.setAccountNumber(accountNumber);
-
-        System.out.print("Enter your initial balance: ");
-        double initialBalance = s.nextDouble();
-        myAccount.setBalance(initialBalance);
-
-        System.out.println("Account Information:");
-        System.out.println("Account Number: " + myAccount.getAccountNumber());
-        System.out.println("Balance: Rs " + myAccount.getBalance());
+        scanner.close();
     }
 }
-
-

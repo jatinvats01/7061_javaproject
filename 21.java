@@ -1,20 +1,22 @@
-/*Create a class showing an example of parameterized constructor. */
+//Program to find all the permutations of a string
+class StringPermutations {
+    public static void main(String[] args) {
+        String inputString = "four";
+        findPermutations(inputString, "");
+    }
 
-class Main {
+    public static void findPermutations(String input, String current) {
+        int length = input.length();
 
-  String languages;
-
-  // constructor accepting single value
-  Main(String lang) {
-    languages = lang;
-    System.out.println(languages + " Programming Language");
-  }
-
-  public static void main(String[] args) {
-
-    // call constructor by passing a single value
-    Main obj1 = new Main("Java");
-    Main obj2 = new Main("C++");
-    Main obj3 = new Main("C");
-  }
+        // If the input string is empty, we've formed a permutation
+        if (length == 0) {
+            System.out.println(current);
+        } else {
+            for (int i = 0; i < length; i++) {
+                char currentChar = input.charAt(i);
+                String remaining = input.substring(0, i) + input.substring(i + 1);
+                findPermutations(remaining, current + currentChar);
+            }
+        }
+    }
 }

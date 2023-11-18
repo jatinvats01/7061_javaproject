@@ -1,34 +1,26 @@
-/*Create a program, showing an example of method overriding */
-
-class Animal {
-    void makeSound() {
-        System.out.println("The animal makes a sound");
-    }
-}
-
-class Dog extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println("The dog barks");
-    }
-}
-
-class Cat extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println("The cat meows");
-    }
-}
-
-public class inheritance13_7024 {
+class Count{
     public static void main(String[] args) {
-        Animal animal = new Animal();
-        animal.makeSound();
+        // Example string
+        String inputString = "This is a sample string";
 
-        Dog dog = new Dog();
-        dog.makeSound();
+        // Count the number of words
+        int wordCount = countWords(inputString);
 
-        Cat cat = new Cat();
-        cat.makeSound();
+        // Print the result
+        System.out.println("Number of words in the string: " + wordCount);
+    }
+
+    // Function to count words in a string
+    private static int countWords(String str) {
+        // Check for null or empty string
+        if (str == null || str.isEmpty()) {
+            return 0;
+        }
+
+        // Split the string into an array of words
+        String[] words = str.split("\\s+");
+
+        // Return the number of words
+        return words.length;
     }
 }

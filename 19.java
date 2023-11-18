@@ -1,73 +1,36 @@
-//Employee.java
-abstract class Employee {
-  protected String name;
-  protected double baseSalary;
+import java.util.Scanner;
 
-  public Employee(String name, double baseSalary) {
-    this.name = name;
-    this.baseSalary = baseSalary;
-  }
+public class StringDivider {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-  public abstract double calculateSalary();
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
 
-  public abstract void displayInfo();
-}
-//Manager.java
-class Manager extends Employee {
-  private double bonus;
+        System.out.print("Enter the number of parts (N): ");
+        int numberOfParts = scanner.nextInt();
 
-  public Manager(String name, double baseSalary, double bonus) {
-    super(name, baseSalary);
-    this.bonus = bonus;
-  }
+        if (numberOfParts > 0) {
+            divideString(inputString, numberOfParts);
+        } else {
+            System.out.println("Please enter a valid number of parts (N > 0).");
+        }
 
-  @Override
-  public double calculateSalary() {
-    return baseSalary + bonus;
-  }
+        scanner.close();
+    }
 
-  @Override
-  public void displayInfo() {
-    System.out.println("\tManager Name: " + name);
-    System.out.println("\tBase Salary: $" + baseSalary);
-    System.out.println("\tBonus: $" + bonus);
-    System.out.println("\tTotal Salary: $" + calculateSalary());
-  }
-}
-//Programmer.java
-class Programmer extends Employee {
-  private int overtimeHours;
-  private double hourlyRate;
+    private static void divideString(String inputString, int numberOfParts) {
+        int length = inputString.length();
+        int partLength = length / numberOfParts;
 
-  public Programmer(String name, double baseSalary, int overtimeHours, double hourlyRate) {
-    super(name, baseSalary);
-    this.overtimeHours = overtimeHours;
-    this.hourlyRate = hourlyRate;
-  }
+        System.out.println("Dividing the string into " + numberOfParts + " equal parts:");
 
-  @Override
-  public double calculateSalary() {
-    return baseSalary + (overtimeHours * hourlyRate);
-  }
+        for (int i = 0; i < numberOfParts; i++) {
+            int startIndex = i * partLength;
+            int endIndex = (i == numberOfParts - 1) ? length : (i + 1) * partLength;
 
-  @Override
-  public void displayInfo() {
-    System.out.println("\tProgrammer Name: " + name);
-    System.out.println("\tBase Salary: $" + baseSalary);
-    System.out.println("\tOvertime Hours: " + overtimeHours);
-    System.out.println("\tHourly Rate: $" + hourlyRate);
-    System.out.println("\tTotal Salary: $" + calculateSalary());
-  }
-}
-//Main.java
-class Inheritance_19 {
-  public static void main(String[] args) {
-    System.out.println();
-    Employee manager = new Manager("\tCorona Cadogan", 6000, 1000);
-    Employee programmer = new Programmer("\tAntal Nuka", 5000, 20, 25.0);
-
-    manager.displayInfo();
-    System.out.println("\t---------------------");
-    programmer.displayInfo();
-  }
+            String part = inputString.substring(startIndex, endIndex);
+            System.out.println("Part " + (i + 1) + ": " + part);
+        }
+    }
 }

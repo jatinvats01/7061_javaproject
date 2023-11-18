@@ -1,21 +1,22 @@
-import java.util.Scanner;
-
-class PrismArea {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Enter the base area of the prism: ");
-        double baseArea = scanner.nextDouble();
-        
-        System.out.print("Enter the height of the prism: ");
-        double height = scanner.nextDouble();
-        
-        double lateralArea = 2 * baseArea;
-        double basePerimeter = Math.sqrt(baseArea) * 4;
-        double totalArea = lateralArea + basePerimeter * height;
-        
-        System.out.println("The area of the prism is: " + totalArea);
-        
-        scanner.close();
+import java.io.*;
+import java.util.*;
+class Strings_33 {
+    static void traverseString(String str)
+    {
+        for (int i = 0; i < str.length(); i++) {
+ 
+            System.out.print(str.charAt(i) + " ");
+        }
+    }
+ 
+    // Method 2
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Custom input string
+        String str = "Hello world";
+ 
+        // Calling the Method 1
+        traverseString(str);
     }
 }

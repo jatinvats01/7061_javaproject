@@ -1,43 +1,13 @@
-//Shape2D.java
-abstract class Shape2D {
-  public abstract void draw();
+class Strings_24{
+    public static void main(String args[]) {
+     
+        String inputStr ="teeter";
 
-  public abstract void resize();
-}
-//Rectangle.java
-class Rectangle extends Shape2D {
-  @Override
-  public void draw() {
-    System.out.println("Rectangle: Drawing a rectangle.");
-  }
-
-  @Override
-  public void resize() {
-    System.out.println("Rectangle: Resizing the rectangle.");
-  }
-}
-//Circle.java
-class Circle extends Shape2D {
-  @Override
-  public void draw() {
-    System.out.println("Circle: Drawing a circle.");
-  }
-
-  @Override
-  public void resize() {
-    System.out.println("Circle: Resizing the circle.");
-  }
-}
-//Main.java
-class Inheritance_24 {
-  public static void main(String[] args) {
-    Shape2D rectangle = new Rectangle();
-    Shape2D circle = new Circle();
-
-    rectangle.draw();
-    rectangle.resize();
-
-    circle.draw();
-    circle.resize();
-  }
+        for(char i :inputStr.toCharArray()){
+        if ( inputStr.indexOf(i) == inputStr.lastIndexOf(i)) {
+            System.out.println("First non-repeating character is: "+i);
+            break;
+        }
+        }
+    }
 }

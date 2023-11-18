@@ -1,38 +1,34 @@
-class Fruit  {  
-private double fprice;  
-private String fname;  
-//constructor to initialize roll number and name of the student  
-Fruit(double fPrice, String fName)  
-{   
-fprice = fPrice;  
-fname = fName;  
-}  
-//creating a copy constructor  
-Fruit(Fruit fruit)  
-{  
-System.out.println("\nAfter invoking the Copy Constructor:\n");  
-fprice = fruit.fprice;  
-fname = fruit.fname;  
-}  
-//creating a method that returns the price of the fruit  
-double showPrice()  
-{  
-return fprice;  
-}  
-//creating a method that returns the name of the fruit  
-String showName()  
-{  
-return fname;  
-}  
-//class to create student object and print roll number and name of the student  
-public static void main(String args[])  
-{  
-Fruit f1 = new Fruit(200, "Apple");  
-System.out.println("Name of the first fruit: "+ f1.showName());  
-System.out.println("Price of the first fruit: "+ f1.showPrice());  
-//passing the parameters to the copy constructor  
-Fruit f2 = new Fruit(f1);  
-System.out.println("Name of the second fruit: "+ f2.showName());  
-System.out.println("Price of the second fruit: "+ f2.showPrice());  
-}  
-}  
+class CharacterFinder {
+    public static void main(String[] args) {
+        String input = "Hello World";
+        char maxChar = findMaxCharacter(input);
+        char minChar = findMinCharacter(input);
+        
+        System.out.println("Maximum character: " + maxChar);
+        System.out.println("Minimum character: " + minChar);
+    }
+    
+    public static char findMaxCharacter(String input) {
+        char maxChar = input.charAt(0);
+        
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) > maxChar) {
+                maxChar = input.charAt(i);
+            }
+        }
+        
+        return maxChar;
+    }
+    
+    public static char findMinCharacter(String input) {
+        char minChar = input.charAt(0);
+        
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) < minChar) {
+                minChar = input.charAt(i);
+            }
+        }
+        
+        return minChar;
+    }
+}

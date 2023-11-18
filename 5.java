@@ -1,31 +1,21 @@
-package PK1;
-class Class1 {
-    public void printMessage() {
-        System.out.println("This is the first class in the first package.");
-    }
-    public static void main(String[] args) {
-        new Class1().printMessage();
-    }
-}
+import java.lang.*; 
+class s { 
 
+	public static void main(String[] args) 
+	{ 
 
+		StringBuffer s1 = new StringBuffer("Yaman "); 
+		System.out.println("Input: " + s1); 
 
-class Class2 {
-    public void printMessage() {
-        System.out.println("This is the second class in the second package.");
-    }
-    public static void main(String[] args) {
-        new Class2().printMessage();
-        }
-}
+		s1.append(true); 
+		System.out.println("Output: " + s1); 
 
+		System.out.println(); 
 
+		StringBuffer s2 = new StringBuffer("Sahota"); 
+		System.out.println("Input: " + s2); 
 
-class Class3 {
-    public void printMessage() {
-        System.out.println("This is the third class in the third package.");
-    }
-    public static void main(String[] args) {
-        new Class3().printMessage();
-        }
-}
+		s2.append(false); 
+		System.out.println("Output: " + s2); 
+	} 
+} 

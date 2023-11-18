@@ -1,29 +1,14 @@
-MyPackage/MyClass.java
-package MyPackage;
+// Program to Add Characters to a String
 
-public class MyClass {
-    protected int protectedField;
-
-    protected void protectedMethod() {
-        System.out.println("Protected method in MyClass");
-    }
-}
- MyPackage/MyExtendedClass.java
-package MyPackage;
-
-public class MyExtendedClass extends MyClass {
-    public void accessProtectedMembers() {
-        protectedField = 42;  // Access the protected field
-        protectedMethod();   // Access the protected method
-        System.out.println("Value of protectedField: " + protectedField);
-    }
-}
- MainApp.java
-package MyPackage;
-
-class Packages_8 {
+class AddCharactersToString {
     public static void main(String[] args) {
-        MyExtendedClass extendedObj = new MyExtendedClass();
-        extendedObj.accessProtectedMembers();
+        // Create a StringBuilder
+        StringBuffer s = new StringBuffer("Hello, ");
+
+        // Add characters to the string
+        s.append("World");
+
+        // Print the final string
+        System.out.println(s.toString()); // Output: "Hello, World!"
     }
 }

@@ -1,20 +1,20 @@
-import java.util.Date;
-
-public class CustomDate {
-    private Date date;
-
-    public CustomDate() {
-        date = new Date();
-    }
-
-    public Date getCurrentDate() {
-        return date;
-    }
-
-    public static void main(String[] args) {
-        CustomDate customDate = new CustomDate();
-        Date currentDate = customDate.getCurrentDate();
-
-        System.out.println("Current Date: " + currentDate);
-    }
-}
+class E {  
+    public static void check(Object x, Object y) {  
+        if (x == y) {  
+            System.out.println("Both pointing to the same reference");  
+        } 
+        else {  
+            System.out.println("Both are pointing to different reference");  
+        }  
+    }  
+    public static void main(String[] args) {  
+        String x = "hello";  
+        String y = "hello";  
+        System.out.println("Before Modification");  
+        check(x, y);  
+        System.out.println("--------------------");
+        x += "world";  
+        System.out.println("After Modification");  
+        check(x, y);  
+    }  
+}  
