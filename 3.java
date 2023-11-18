@@ -1,26 +1,31 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
- 
-class Read_File {
-  public static void main(String x[] ) {
-    try {
-      r_File("test2.txt");
-    } catch (FileNotFoundException e) {
-      System.out.println("Exception: " + e.getMessage());
+
+//Write a Java method to display the middle character of a string. Note:
+//a) If the length of the string is odd there will be two middle characters. b) 
+//If the length of the string is even there will be one middle character.
+
+  class function3 {
+  public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input a string: ");
+        String str = in.nextLine();
+        System.out.print("The middle character in the string: " + middle(str)+"\n");
     }
-  }
-
-  public static void r_File(String fname) throws FileNotFoundException {
-    File file = new File(fname);
-    Scanner scanner = new Scanner(file);
-
-
-    while (scanner.hasNextLine()) {
-      String line = scanner.nextLine();
-      System.out.println(line);
+ public static String middle(String str)
+    {
+        int position;
+        int length;
+        if (str.length() % 2 == 0)
+        {
+            position = str.length() / 2 - 1;
+            length = 2;
+        }
+        else
+        {
+            position = str.length() / 2;
+            length = 1;
+        }
+        return str.substring(position, position + length);
     }
-
-    scanner.close();
-  }
 }

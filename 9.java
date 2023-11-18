@@ -1,36 +1,28 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-class DatabaseManager {
-    public static void main(String[] args) throws ClassNotFoundException {
-//        Class.forName("com.mysql.jdbc.Driver");
-        String dbUrl = "jdbc:mysql://localhost:3306/codevengers";
-        String username = "root";
-        String password = "";
-
-        try {
-            Connection connection = new DatabaseManager().getConnection(dbUrl, username, password);
-            System.out.println("Connection successfull");
-            connection.close();
-        } catch (DatabaseConnectionException e) {
-            System.out.println("Exception: " + e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("SQL Exception: " + e.getMessage());
-        }
+class Function9 {
+    public static void main(String[] args) {
+        findTwinPrimes(100);
     }
 
-    Connection getConnection(String dbUrl, String username, String password) throws DatabaseConnectionException {
-        try {
-            return DriverManager.getConnection(dbUrl, username, password);
-        } catch (SQLException e) {
-            throw new DatabaseConnectionException("Failed to connect to the database: " + e.getMessage());
+    
+    private static boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
         }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
-}
 
-class DatabaseConnectionException extends Exception {
-    public DatabaseConnectionException(String message) {
-        super(message);
+    
+    private static void findTwinPrimes(int limit) {
+        System.out.println("Twin Prime Numbers less than " + limit + ":");
+        for (int i = 3; i < limit; i++) {
+            if (isPrime(i) && isPrime(i + 2)) {
+                System.out.println("(" + i + ", " + (i + 2) + ")");
+            }
+        }
     }
 }

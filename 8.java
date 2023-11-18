@@ -1,23 +1,24 @@
-
-//Write a Java program to connect the Java API to Database, if connection not successful then throw an exception
-
-
-import java.sql.*;
-class ExceptionHandle
+import java.util.Date;
+class Test
 {
-public static void main(String st[]) 
-{
-try
-{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection c=DriverManager.getConnection("jdbc:mysql://localhost:3306/bharat?useSSL=false","root","god123456");
-                System.out.println("Connect to database successfully");
-        c.close();
+    static void apnaTimeAgya(Boolean check)
+    {
+        if (check)
+        {
+            Date d = new Date();
 
+            System.out.println(" hero time "+d);
+        }
+        else
+        {
+            System.out.println("ja me nahi btata");
+        }
+    }
+    public static void main(String args[])
+    {
+        Test t = new Test();
         
-
-        }catch(ClassNotFoundException e){System.out.println("Unable to find class");}
-        catch(SQLException e){System.out.println("Fail to connect!");}
-        
-}
+        t.apnaTimeAgya(false);
+        t.apnaTimeAgya(true);
+    }
 }

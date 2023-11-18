@@ -1,33 +1,26 @@
-// Write a Java program that reads a file and throws an exception if the file is empty.
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
-class EmptyFileException extends Exception {
-    public EmptyFileException(String message) {
-        super(message);
-    }
-}
-
-class CheckEmptyFile {
-    public static void main(String[] args) {
-        try {
-            checkFileNotEmpty("data.txt");
-        } catch (EmptyFileException e) {
-            System.out.println("Empty file detected: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("File not found or cannot be read: " + e.getMessage());
-        }
-    }
-
-    public static void checkFileNotEmpty(String fileName) throws IOException, EmptyFileException {
-        File file = new File(fileName);
-
-        if (!file.exists() || file.length() == 0) {
-            throw new EmptyFileException("File is empty or does not exist.");
-        }
-
-        FileReader reader = new FileReader(file);
-        reader.close();
-    }
+import java.util.Scanner;
+ class FutureInvestment {
+ 
+ public static void main(String[] args) {
+    Scanner in = new Scanner(System.in); 
+    System.out.print("Input the investment amount: ");
+ 	double investment = in.nextDouble();
+ 	System.out.print("Input the rate of interest: ");
+	double rate = in.nextDouble();
+	System.out.print("Input number of years: ");
+	int year = in.nextInt();
+	
+	rate *= 0.01;
+	
+	System.out.println("Years    FutureValue");
+	for(int i = 1; i <= year; i++) {
+    	int formatter = 19;
+	    if (i >= 10) formatter = 18;
+		System.out.printf(i + "%"+formatter+".2f\n", futureInvestmentValue(investment, rate/12, i));
+       }
+	 }
+ 
+ public static double futureInvestmentValue(double investmentAmount, double monthlyInterestRate, int years) {
+		return investmentAmount * Math.pow(1 + monthlyInterestRate, years * 12);
+	}
 }

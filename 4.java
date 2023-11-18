@@ -1,41 +1,27 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+/*Write a java method to count all the words in a string.*/
 
-class exception4 {
-    class PositiveNumberException extends Exception {
-        public PositiveNumberException(String message) {
-            super(message);
-        }
-    }
-    public static void main(String[] args) {
-        File filename = new File("numbers.txt");
+class a
 
-        try {
-            new exception4().checkPositiveNumbers(filename);
-            System.out.println("No positive numbers found.");
-        } catch (PositiveNumberException e) {
-            System.err.println("Exception: " + e.getMessage());
-        } catch (IOException e) {
-            System.err.println("Error reading the file: " + e.getMessage());
-        }
-    }
+{
 
-    void checkPositiveNumbers(File filename) throws IOException, PositiveNumberException {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                int number = Integer.parseInt(line);
-                if (number > 0) {
-                    throw new exception4.PositiveNumberException("Positive number found: " + number);
-                }
-            }
-            reader.close();
-        } catch (FileNotFoundException e){
-            throw new IOException("The specified file was not found.", e);
-        }
-    }
+static int countWord(String s)
+{
+int t=1;
+for(int i=0; i<s.length(); i++)
+{
+
+if((s.charAt(i) == ' ') && (s.charAt(i+1) != ' '))
+{
+t++;
+}
+}
+return t;
+}
+
+public static void main(String args[])
+{
+
+System.out.println(countWord("Hello How are you"));
+}
+
 }
