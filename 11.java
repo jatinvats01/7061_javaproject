@@ -1,107 +1,89 @@
-/* Write a Java program to create an interface Sortable with a method sort (int[] array) that sorts an array of integers in descending order. Create two classes QuickSort and MergeSort that implement the Sortable interface and provide their own implementations of the sort() method. */
-interface Sortable {
-    void sort(int[] array);
-}
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-class QuickSort implements Sortable {
-    
-    public void sort(int[] array) {
-        quickSort(array, 0, array.length - 1);
+public class Library {
+    private List<Book> books;
+
+    public Library() {
+        books = new ArrayList<>();
     }
 
-    private void quickSort(int[] array, int low, int high) {
-        if (low < high) {
-            int pivotIndex = partition(array, low, high);
-            quickSort(array, low, pivotIndex - 1);
-            quickSort(array, pivotIndex + 1, high);
-        }
+    public void addBook(Book book) {
+        books.add(book);
+        System.out.println("Book added to the library.");
     }
 
-    private int partition(int[] array, int low, int high) {
-        int pivot = array[high];
-        int i = low - 1;
-
-        for (int j = low; j < high; j++) {
-            if (array[j] >= pivot) {
-                i++;
-                swap(array, i, j);
+    public void removeBook(String isbn) {
+        Iterator<Book> iterator = books.iterator();
+        while (iterator.hasNext()) {
+            Book book = iterator.next();
+            if (book.getIsbn().equals(isbn)) {
+                iterator.remove();
+                System.out.println("Book removed from the library.");
+                return;
             }
         }
-
-        swap(array, i + 1, high);
-        return i + 1;
+        System.out.println("Book with ISBN " + isbn + " not found in the library.");
     }
 
-    private void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-}
-
-class MergeSort implements Sortable {
-    
-    public void sort(int[] array) {
-        mergeSort(array, 0, array.length - 1);
-    }
-
-    private void mergeSort(int[] array, int low, int high) {
-        if (low < high) {
-            int mid = (low + high) / 2;
-            mergeSort(array, low, mid);
-            mergeSort(array, mid + 1, high);
-            merge(array, low, mid, high);
-        }
-    }
-
-    private void merge(int[] array, int low, int mid, int high) {
-        int[] temp = new int[array.length];
-        for (int i = low; i <= high; i++) {
-            temp[i] = array[i];
-        }
-
-        int i = low;
-        int j = mid + 1;
-        int k = low;
-
-        while (i <= mid && j <= high) {
-            if (temp[i] >= temp[j]) {
-                array[k] = temp[i];
-                i++;
-            } else {
-                array[k] = temp[j];
-                j++;
+    public void displayAllBooks() {
+        if (books.isEmpty()) {
+            System.out.println("The library has no books.");
+        } else {
+            System.out.println("Books in the library:");
+            for (Book book : books) {
+                book.displayBookInfo();
             }
-            k++;
-        }
-
-        while (i <= mid) {
-            array[k] = temp[i];
-            i++;
-            k++;
         }
     }
-}
 
-public class interfaces11_7024 {
+    public static class Book {
+        private String title;
+        private String author;
+        private String isbn;
+
+        public Book(String title, String author, String isbn) {
+            this.title = title;
+            this.author = author;
+            this.isbn = isbn;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public String getIsbn() {
+            return isbn;
+        }
+
+        public void displayBookInfo() {
+            System.out.println("Title: " + title);
+            System.out.println("Author: " + author);
+            System.out.println("ISBN: " + isbn);
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
-        int[] array = {2, 8, 70, 1, 53};
+        Library library = new Library();
 
-        Sortable quickSort = new QuickSort();
-        quickSort.sort(array);
-        System.out.print("QuickSort: ");
-        printArray(array);
+        Book book1 = new Book("Java Programming", "John Doe", "123456789");
+        Book book2 = new Book("Python Basics", "Jane Smith", "987654321");
 
-        Sortable mergeSort = new MergeSort();
-        mergeSort.sort(array);
-        System.out.print("MergeSort: ");
-        printArray(array);
-    }
+        library.addBook(book1);
+        library.addBook(book2);
 
-    private static void printArray(int[] array) {
-        for (int num : array) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+        System.out.println("Books in the library after adding:");
+        library.displayAllBooks();
+
+        library.removeBook("123456789");
+
+        System.out.println("\nBooks in the library after removal:");
+        library.displayAllBooks();
     }
 }

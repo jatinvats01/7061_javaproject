@@ -1,64 +1,57 @@
-// Program to insert, delete, update in table using PreparedStatement.
-import java.sql.*;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-class Database{
-    Connection c;
-    PreparedStatement s;
-    public Database(String url,String uname,String pass) throws SQLException,ClassNotFoundException{
-    Class.forName("com.mysql.cj.jdbc.Driver");
-         c=DriverManager.getConnection(url,uname,pass);
+// Write a Java program to create a class called "Employee" with a name, salary, and hire date attributes,
+ //and a method to calculate years of service.
+
+class Employee {
+    private String name;
+    private double salary;
+    private Date hireDate;
+
+    public Employee(String name, double salary, Date hireDate) {
+        this.name = name;
+        this.salary = salary;
+        this.hireDate = hireDate;
     }
-     void insert() throws SQLException {
-    s=c.prepareStatement("insert into users values(?,?,?)");
-    s.setInt(1,13);
-    s.setString(2,"Ankush");
-    s.setString(3,"Ankush@gmail.com");
-System.out.println(s.executeUpdate() +"Row affected");
-   }
-     void delete() throws SQLException {
-        s=c.prepareStatement("delete from users where id=?");
-        s.setInt(1,8);
-System.out.println(s.executeUpdate() +"Row affected");
-        }
 
-     void update() throws SQLException {
-       s=c.prepareStatement("update users set username=? where id=?");
-       s.setString(1,"Srk");
-       s.setInt(2,1);
-       System.out.println(s.executeUpdate() +"Row affected");
-        }
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public int calculateYearsOfService() {
+        Date currentDate = new Date();
+        long millisecondsInYear = 1000L * 60 * 60 * 24 * 365;
+        long difference = currentDate.getTime() - hireDate.getTime();
+        int years = (int) (difference / millisecondsInYear);
+        return years;
+    }
 }
-class Db{
-    public static void main(String str [])throws SQLException,ClassNotFoundException,java.io.IOException{
-        String url = "jdbc:mysql://localhost:3306/mydb";
-        String username = "root";
-        String password = "";
-        Database d=new Database(url,username,password);
-        int c = 5;
-        Scanner sc=new Scanner(System.in);
-        while(c!=4){
-            System.out.println(" Press 1 for insert. \n Press 2 for delete \n Press 3 for update \n Press 4 for Exit");
-            c=sc.nextInt();
-            switch(c){
-              case 1:
-              d.insert();
-              break;
-              
-              case 2:
-              d.delete();
-              break;
-              
-              case 3:
-              d.update();
-              break;
-              case 4:
-              System.out.println("Exit Successfully");
-              break;
-              default :
-              System.out.println("Choose between 1-4");
-              break;
-            }
+
+ class kamal7019javaOOP9 {
+    public static void main(String[] args) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date hireDate = dateFormat.parse("2010-06-15");
+            
+            Employee employee = new Employee("John Doe", 60000.0, hireDate);
+
+            System.out.println("Name: " + employee.getName());
+            System.out.println("Salary: $" + employee.getSalary());
+            System.out.println("Hire Date: " + dateFormat.format(employee.getHireDate()));
+
+            int yearsOfService = employee.calculateYearsOfService();
+            System.out.println("Years of Service: " + yearsOfService + " years");
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }

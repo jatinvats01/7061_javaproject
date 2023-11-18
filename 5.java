@@ -1,74 +1,99 @@
-// Calculate sum of prime numbers up to a given limit using multiple threads
-class MyThread extends Thread {
-    private int start, end;
-    private int sum = 0;
+// Write a Java program to create a class called "Book" with attributes for title, author, and ISBN, and methods to add and remove books from a collection.
+class Book 
+{
+    private String title;
+    private String author;
+    private String isbn;
 
-    MyThread(int start, int end) {
-        this.start = start;
-        this.end = end;
+    public Book(String title, String author, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
     }
 
-    public void run() {
-        System.out.println("My thread is running");
-        for (int i = start; i <= end; i++) {
-            if (isPrime(i))
-                sum += i;
-        }
+    public String getTitle() {
+        return title;
     }
 
-    boolean isPrime(int n) {
-        if (n == 0 || n == 1)
-            return false;
-        for (int i = 2; i <= Math.sqrt(n); ++i) {
-            if (n % i == 0)
-                return false;
-        }
-        return true;
+    public String getAuthor() {
+        return author;
     }
 
-    public int getSum() {
-        return sum;
+    public String getISBN() {
+        return isbn;
+    }
+
+    @Override
+    public String toString() {
+        return "Title: " + title + ", Author: " + author + ", ISBN: " + isbn;
     }
 }
 
-class SumOfPrimes {
-    MyThread[] myThreads;
-    private int sum = 0;
-    private int limit = 20;
-    private static int threadCount = 4;
+class BookCollection 
+{
+    private Book[] books;
+    private int size;
 
-    // Constructor to initialize the array of threads
-    public SumOfPrimes(int n) throws InterruptedException {
-        this.myThreads = new MyThread[n];
-        for (int i = 0; i < n; i++) {
-            int start = ((limit * i) / n);
-            int end = (i == n-1) ? limit : ((limit * (i+1))/n) - 1;
-            myThreads[i] = new MyThread(start, end);
+    public BookCollection(int capacity) {
+        books = new Book[capacity];
+        size = 0;
+    }
+
+    public void addBook(Book book) {
+        if (size < books.length) {
+            books[size] = book;
+            size++;
+        } else {
+            System.out.println("Collection is full. Cannot add more books.");
         }
     }
 
-    // Function to start all threads
-    public void startAll() throws InterruptedException {
-        for (int i = 0; i < myThreads.length; i++) {
-            myThreads[i].start();
-            myThreads[i].join();
+    public void removeBook(Book book) {
+        for (int i = 0; i < size; i++) {
+            if (books[i] == book) {
+                // Shift elements to remove the book
+                for (int j = i; j < size - 1; j++) {
+                    books[j] = books[j + 1];
+                }
+                books[size - 1] = null;
+                size--;
+                System.out.println("Book removed from the collection.");
+                return;
+            }
         }
+        System.out.println("Book not found in the collection.");
     }
 
-    public void getSum() {
-        for (int i = 0; i < myThreads.length; i++) {
-            this.sum += myThreads[i].getSum();
+    public void displayBooks() {
+        if (size == 0) {
+            System.out.println("The collection is empty.");
+        } else {
+            for (int i = 0; i < size; i++) {
+                System.out.println(books[i]);
+            }
         }
     }
-    
+}
+
+class Check {
     public static void main(String[] args) {
-        try {
-            SumOfPrimes mt = new SumOfPrimes(threadCount);
-            mt.startAll();
-            mt.getSum();
-            System.out.println("Sum of prime numbers is " + mt.sum);
-        } catch (InterruptedException e) {
-            System.err.print("Error: " + e);
-        }
+        BookCollection collection = new BookCollection(3);
+
+        Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", "978-0743273565");
+        Book book2 = new Book("To Kill a Mockingbird", "Harper Lee", "978-0061120084");
+        Book book3 = new Book("1984", "George Orwell", "978-0451524935");
+
+        collection.addBook(book1);
+        collection.addBook(book2);
+        collection.addBook(book3);
+
+        System.out.println("Books in the collection:");
+        collection.displayBooks();
+
+        System.out.println("\nRemoving 'The Great Gatsby' from the collection.");
+        collection.removeBook(book1);
+
+        System.out.println("\nUpdated list of books in the collection:");
+        collection.displayBooks();
     }
 }

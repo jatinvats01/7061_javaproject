@@ -1,45 +1,42 @@
-//Program no. : jdbc2
-//Program name : Create the table in the database from Java API.
+public class Dog {
+    private String name;
+    private String breed;
 
-// java -cp "D:\44\javaPrograms\jd\JDBC;C:\mysql-connector-j-8.2.0.jar" DataDefination
+    public Dog(String name, String breed) {
+        this.name = name;
+        this.breed = breed;
+    }
 
-class DataDefination {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
     public static void main(String[] args) {
-        try {
+        Dog dog1 = new Dog("Max", "Labrador");
+        Dog dog2 = new Dog("Bella", "Golden Retriever");
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        System.out.println("Initial values:");
+        System.out.println("Dog 1 - Name: " + dog1.getName() + ", Breed: " + dog1.getBreed());
+        System.out.println("Dog 2 - Name: " + dog2.getName() + ", Breed: " + dog2.getBreed());
 
-            java.sql.Connection connect = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
-                    "root", "");
+        dog1.setName("Charlie");
+        dog2.setBreed("German Shepherd");
 
-            if (connect.isClosed()) {
-                System.out.println(" Your Connection is Closed!");
-                System.exit(0);
-            }
-
-            // ------------------------------------------------------
-
-            System.out.println(" Your Connection is Establised ");
-
-            java.sql.Statement state = connect.createStatement();
-
-            String create_table_query = "CREATE Table mytable3 (id int)";
-
-            Boolean result = state.execute(create_table_query);
-
-            if (result) {
-                System.out.println("Table created!");
-            }
-            // -----------------------------------------------------
-
-            connect.close();
-
-            if (connect.isClosed())
-                System.out.println(" Successfully Connection is Closed!");
-        } catch (ClassNotFoundException error) {
-            System.out.print(error.getMessage());
-        } catch (java.sql.SQLException error) {
-            System.out.print(error.getMessage());
-        }
+        System.out.println("\nUpdated values:");
+        System.out.println("Dog 1 - Name: " + dog1.getName() + ", Breed: " + dog1.getBreed());
+        System.out.println("Dog 2 - Name: " + dog2.getName() + ", Breed: " + dog2.getBreed());
     }
 }
+

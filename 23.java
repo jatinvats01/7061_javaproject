@@ -1,43 +1,46 @@
-//Instrument.java
-abstract class Instrument {
-  public abstract void play();
+import java.util.Scanner;
 
-  public abstract void tune();
+class Student {
+    private static int studentCount = 0;
+    private int rollNo;
+    private String name;
+    private String className;
+
+    public Student(String name, String className) {
+        this.rollNo = ++studentCount;
+        this.name = name;
+        this.className = className;
+    }
+
+    public void displayDetails() {
+        System.out.println("Roll No: " + rollNo);
+        System.out.println("Name: " + name);
+        System.out.println("Class: " + className);
+    }
 }
-//Glockenspiel.java
-class Glockenspiel extends Instrument {
-  @Override
-  public void play() {
-    System.out.println("Glockenspiel: Playing the notes on the metal bars.");
-  }
+class StudentManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-  @Override
-  public void tune() {
-    System.out.println("Glockenspiel: Tuning the metal bars to the correct pitch.");
-  }
-}
-//Violin.java
-class Violin extends Instrument {
-  @Override
-  public void play() {
-    System.out.println("Violin: Playing the strings with a bow or fingers.");
-  }
+        Student[] students = new Student[10];
 
-  @Override
-  public void tune() {
-    System.out.println("Violin: Tuning the strings to the correct pitch.");
-  }
-}
-//Main.java
-class Inheritance_23 {
-  public static void main(String[] args) {
-    Instrument glockenspiel = new Glockenspiel();
-    Instrument violin = new Violin();
+        for (int i = 0; i < students.length; i++) {
+            System.out.println("Enter details for student " + (i + 1) + ":");
+            System.out.print("Enter name: ");
+            String name = scanner.nextLine();
 
-    glockenspiel.play();
-    glockenspiel.tune();
+            System.out.print("Enter class: ");
+            String className = scanner.nextLine();
 
-    violin.play();
-    violin.tune();
-  }
+            students[i] = new Student(name, className);
+        }
+
+        System.out.println("Details of all students:");
+        for (Student student : students) {
+            student.displayDetails();
+            System.out.println("---------------");
+        }
+
+        scanner.close();
+    }
 }

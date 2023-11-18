@@ -1,86 +1,73 @@
-// Java Program to illustrate Multithreading Approach
+import java.util.ArrayList;
+import java.util.List;
 
 class Bank {
-int total = 100;
-void withdrawn(String name, int withdrawal){
-if (total >= withdrawal) {
-System.out.println(name + " withdrawn "+ withdrawal);
-total = total - withdrawal;
-System.out.println(total);
-try {
-Thread.sleep(1000);
-}
-catch (InterruptedException e) {
-e.printStackTrace();}}
-else {
-System.out.println(name+ " you can not withdraw "+ withdrawal);
-System.out.println("your balance is: " + total);
-try {
-Thread.sleep(1000);
-}
-catch (InterruptedException e) {
-e.printStackTrace();}
-}}
-void deposit(String name, int deposit){
-System.out.println(name + " deposited " + deposit);
-total = total + deposit;
-System.out.println("Balance after deposit: "+ total);
-try {
-Thread.sleep(1000);
-}
-catch (InterruptedException e) {
-e.printStackTrace();}
-}}
+    private List<Account> accounts;
 
-class ThreadWithdrawal extends Thread {
+    public Bank() {
+        accounts = new ArrayList<>();
+    }
 
-	Bank object;
-	String name;
-	int dollar;
+    public void addAccount(Account account) {
+        accounts.add(account);
+    }
 
-	ThreadWithdrawal(Bank ob, String name, int money)
-	{
-		this.object = ob;
-		this.name = name;
-		this.dollar = money;
-	}
+    public void removeAccount(Account account) {
+        accounts.remove(account);
+    }
 
-	public void run() { object.withdrawn(name, dollar); }
+    public void depositMoney(Account account, double amount) {
+        account.deposit(amount);
+    }
+
+    public void withdrawMoney(Account account, double amount) {
+        account.withdraw(amount);
+    }
 }
 
-class ThreadDeposit extends Thread {
+class Account {
+    private String customerName;
+    private double balance;
 
-	Bank object;
-	String name;
-	int dollar;
-	ThreadDeposit(Bank ob, String name, int money)
-	{
-		this.object = ob;
-		this.name = name;
-		this.dollar = money;
-	}
+    public Account(String customerName) {
+        this.customerName = customerName;
+        balance = 0.0;
+    }
 
-	public void run() { object.deposit(name, dollar); }
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 }
 
+class Main {
+    public static void main(String[] args) {
+        Bank bank = new Bank();
 
-class main1 {
+        Account account1 = new Account("John Doe");
+        Account account2 = new Account("Jane Smith");
 
-	public static void main(String[] args)
-	{
-		
-		Bank obj = new Bank();
+        bank.addAccount(account1);
+        bank.addAccount(account2);
 
-		ThreadWithdrawal t1 = new ThreadWithdrawal(obj, "Arnab", 20);
-		ThreadWithdrawal t2 = new ThreadWithdrawal(obj, "Mandeep", 40);
-		ThreadDeposit t3 = new ThreadDeposit(obj, "Mukta", 35);
-		ThreadWithdrawal t4 = new ThreadWithdrawal(obj, "Rinku", 80);
-		ThreadWithdrawal t5 = new ThreadWithdrawal(obj, "Shubham", 40);
+        bank.depositMoney(account1, 1000.0);
+        bank.depositMoney(account2, 500.0);
 
-		t1.start();
-		t2.start();
-		t3.start();
-		t4.start();
-		t5.start();
-	}
+        bank.withdrawMoney(account1, 200.0);
+        bank.withdrawMoney(account2, 100.0);
+
+        System.out.println("Account 1 balance: " + account1.getBalance());
+        System.out.println("Account 2 balance: " + account2.getBalance());
+    }
 }

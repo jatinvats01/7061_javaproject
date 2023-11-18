@@ -1,23 +1,42 @@
-
 import java.util.Scanner;
 
-class ` 
-{
-   public static void main(String args[]) 
-   { 
+class bankaccount {
+    private String accountNumber;
+    private double balance;
 
-      System.out.println("\n How to convert Hex to Decimal.\n");
-      Scanner sc=new Scanner(System.in);
-      System.out.print(" Enter a Hex Value one  : ");
-      String Hex1 = sc.nextLine();
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-      System.out.print(" Enter a Hex Value two  : ");
-      String Hex2 = sc.nextLine();
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
-      int dec1 = Integer.parseInt(Hex1, 16);
-      int dec2 = Integer.parseInt(Hex2, 16);
+    public double getBalance() {
+        return balance;
+    }
 
-      System.out.println("\n Convert Hex To Decimal value  is : " + dec1);
-      System.out.println(" Convert Hex To Decimal value is : " + dec2);
-   }
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public static void main(String[] a) {
+        Scanner s = new Scanner(System.in);
+
+        bankaccount myAccount = new bankaccount();
+
+        System.out.print("Enter your account number: ");
+        String accountNumber = s.nextLine();
+        myAccount.setAccountNumber(accountNumber);
+
+        System.out.print("Enter your initial balance: ");
+        double initialBalance = s.nextDouble();
+        myAccount.setBalance(initialBalance);
+
+        System.out.println("Account Information:");
+        System.out.println("Account Number: " + myAccount.getAccountNumber());
+        System.out.println("Balance: Rs " + myAccount.getBalance());
+    }
 }
+
+
