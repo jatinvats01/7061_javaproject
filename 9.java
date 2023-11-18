@@ -1,11 +1,36 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class convert {
-    public static void main(String[] args) {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String strDate = formatter.format(date);
-        System.out.println("Date converted to string: " + strDate);
+class DatabaseManager {
+    public static void main(String[] args) throws ClassNotFoundException {
+//        Class.forName("com.mysql.jdbc.Driver");
+        String dbUrl = "jdbc:mysql://localhost:3306/codevengers";
+        String username = "root";
+        String password = "";
+
+        try {
+            Connection connection = new DatabaseManager().getConnection(dbUrl, username, password);
+            System.out.println("Connection successfull");
+            connection.close();
+        } catch (DatabaseConnectionException e) {
+            System.out.println("Exception: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("SQL Exception: " + e.getMessage());
+        }
+    }
+
+    Connection getConnection(String dbUrl, String username, String password) throws DatabaseConnectionException {
+        try {
+            return DriverManager.getConnection(dbUrl, username, password);
+        } catch (SQLException e) {
+            throw new DatabaseConnectionException("Failed to connect to the database: " + e.getMessage());
+        }
+    }
+}
+
+class DatabaseConnectionException extends Exception {
+    public DatabaseConnectionException(String message) {
+        super(message);
     }
 }

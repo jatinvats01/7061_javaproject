@@ -1,21 +1,15 @@
-// Data conversion:- 11. How to convert string to Char.     By(7058/21)
+ class Main {
+  static void checkAge(int age) {
+    if (age < 18) {
+      throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+    }
+    else {
+      System.out.println("Access granted - You are old enough!");
+    }
+  }
 
-import java.util.*;
+  public static void main(String[] args) {
+    checkAge(15); // Set age to 15 (which is below 18...)
+  }
+}
 
-class STC{
- public static void main(String args[]){
-   
-    String str="Aryan";
-  
-    char [] chr= new char[str.length()];
-     
-    for(int i=0;i<str.length();i++){
-   
-   chr[i]=str.charAt(i);
-   
-}
-for (char c : chr){
- System.out.println(c);
-}
-}
-}

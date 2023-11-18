@@ -1,39 +1,24 @@
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.*;
-class Message implements ActionListener
-{
   
-    public static void main(String args[])
-    {
-	
-	JFrame frame = new JFrame("Original Frame");
-	frame.setSize(300,300);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 
-	
-	Message obj = new Message();
- 
-	
-	JButton button = new JButton("View Message");
-	frame.add(button);
-	button.addActionListener(obj);
- 
-	
-	frame.setVisible(true);
-    }
-   
-    public void actionPerformed(ActionEvent e)
-    {
-	
-	JFrame sub_frame = new JFrame("Sub Frame");
-	sub_frame.setSize(200,200);
- 
-	
-	JLabel label = new JLabel("!!! Hello !!!");
-	sub_frame.add(label);
- 
-	
-	sub_frame.setVisible(true);
-    }
-}
+  class multiplecatch{
+ public  static void main(String[] args) {  
+          
+           try{    
+                int a[]=new int[5];    
+                a[5]=30/0;    
+               }    
+               catch(ArithmeticException e)  
+                  {  
+                   System.out.println("Arithmetic Exception occurs");  
+                  }    
+               catch(ArrayIndexOutOfBoundsException e)  
+                  {  
+                   System.out.println("ArrayIndexOutOfBounds Exception occurs");  
+                  }    
+               catch(Exception e)  
+                  {  
+                   System.out.println("Parent Exception occurs");  
+                  }             
+
+              System.out.println("rest of the code");
+ }
+  }

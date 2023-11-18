@@ -1,55 +1,33 @@
+// Write a Java program that reads a file and throws an exception if the file is empty.
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
-// Java Program to Handle KeyBoardEvent
-import java.awt.*;
-import java.awt.event.*;
+class EmptyFileException extends Exception {
+    public EmptyFileException(String message) {
+        super(message);
+    }
+}
 
-class Main implements KeyListener {
-    static Frame frame;
-    static TextField tf1;
-    static TextField tf2;
-
-    // Driver function
-    public static void main(String args[]) {
-        frame = new Frame("Keyboard Event");
-        frame.setSize(500, 500);
-        frame.setLayout(null);
-
-        tf1 = new TextField();
-        tf1.setBounds(150, 100, 500, 50);
-
-        tf2 = new TextField();
-        tf2.setBounds(140, 400, 500, 50);
-
-        Main obj = new Main();
-
-        tf2.addKeyListener(obj);
-        frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent w) {
-                frame.dispose();
-            }
-        });
-        frame.setVisible(true);
-        frame.add(tf1);
-        frame.add(tf2);
+class CheckEmptyFile {
+    public static void main(String[] args) {
+        try {
+            checkFileNotEmpty("data.txt");
+        } catch (EmptyFileException e) {
+            System.out.println("Empty file detected: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("File not found or cannot be read: " + e.getMessage());
+        }
     }
 
-    public void keyReleased(KeyEvent e) {
-        tf1.setText("");
-        tf1.setText("Key Released : " + e.getKeyCode());        
-        System.out.println("Key Released");
-    }
+    public static void checkFileNotEmpty(String fileName) throws IOException, EmptyFileException {
+        File file = new File(fileName);
 
-    // function to display the unicode of key pressed and the character if it is a letter or a digit
-    public void keyPressed(KeyEvent e) {
-        tf1.setText("");
-        tf1.setText("Key Pressed : " + e.getKeyCode());
-        System.out.println("Key Pressed");
-    }
+        if (!file.exists() || file.length() == 0) {
+            throw new EmptyFileException("File is empty or does not exist.");
+        }
 
-    // function to display the character of the key typed
-    public void keyTyped(KeyEvent e) {
-        tf1.setText("");
-        tf1.setText("Key Typed : " + e.getKeyChar());
-    System.out.println("Key Typed");
+        FileReader reader = new FileReader(file);
+        reader.close();
     }
 }

@@ -1,63 +1,42 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-class Window_Adapter extends WindowAdapter
-{
-    static JFrame frame;
-    
-    public static void main(String args[])
-    {
-      
-        frame=new JFrame("Window Adapter Class");
-        frame.setBackground(Color.white);
-        frame.setSize(500,500);
-      
-        Window_Adapter obj=new Window_Adapter();
+ class NestedTryBlock{    
+ public static void main(String args[]){   
+ //outer try block   
+  try{    
+  //inner try block 1  
+    try{    
+     System.out.println("going to divide by 0");    
+     int b =39/0;    
+   }  
+    //catch block of inner try block 1  
+    catch(ArithmeticException e)  
+    {  
+      System.out.println(e);  
+    }    
        
-        frame.addWindowListener(obj);
-        frame.setVisible(true);
-    }
-   
-    @Override
-    public void windowClosing(WindowEvent e)
-    {   
-        System.out.println("Status of frame : Closing");
-        windowClosed(e);
-    }
-   
-    @Override
-    public void windowClosed(WindowEvent e)
-    {
-        frame.dispose();
-    }
-  
-    @Override
-    public void windowIconified(WindowEvent e)
-    {
-        System.out.println("Status of frame : Iconified");
-    }
     
-    @Override
-    public void windowDeiconified(WindowEvent e)
-    {
-        System.out.println("Status of frame : Deiconfied");
-    }
+    //inner try block 2  
+    try{    
+    int a[]=new int[5];    
   
-    @Override
-    public void windowActivated(WindowEvent e)
-    {
-        System.out.println("Status of frame : Activated");
-    }
-   
-    @Override
-    public void windowDeactivated(WindowEvent e)
-    {
-        System.out.println("Status of frame : Deactivated");
-    }
-   
-    @Override
-    public void windowOpened(WindowEvent e)
-    {
-        System.out.println("Status of frame : Opened");
-    }
-}
+    //assigning the value out of array bounds  
+     a[5]=4;    
+     }  
+  
+    //catch block of inner try block 2  
+    catch(ArrayIndexOutOfBoundsException e)  
+    {  
+       System.out.println(e);  
+    }    
+  
+      
+    System.out.println("other statement");    
+  }  
+  //catch block of outer try block  
+  catch(Exception e)  
+  {  
+    System.out.println("handled the exception (outer catch)");  
+  }    
+    
+  System.out.println("normal flow..");    
+ }    
+}  

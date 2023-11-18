@@ -1,30 +1,26 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-public class event {
-    static JFrame frame;
-
-    public static void main(String[] args) {
-        frame = new JFrame("Button Image");
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.white);
-        frame.setLayout(new FlowLayout());
-
-        JButton button = new JButton("Display");
-        frame.add(button);
-
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ImageIcon icon = new ImageIcon("logo.jpeg");
-                JLabel label = new JLabel(icon);
-                frame.add(label);
-                frame.pack();
-                frame.setSize(500, 500);
-            }
-        });
-
-        frame.setVisible(true);
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+ 
+class Read_File {
+  public static void main(String x[] ) {
+    try {
+      r_File("test2.txt");
+    } catch (FileNotFoundException e) {
+      System.out.println("Exception: " + e.getMessage());
     }
+  }
+
+  public static void r_File(String fname) throws FileNotFoundException {
+    File file = new File(fname);
+    Scanner scanner = new Scanner(file);
+
+
+    while (scanner.hasNextLine()) {
+      String line = scanner.nextLine();
+      System.out.println(line);
+    }
+
+    scanner.close();
+  }
 }

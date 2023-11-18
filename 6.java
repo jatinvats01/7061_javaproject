@@ -1,38 +1,31 @@
-import java.awt.*;
-import java.awt.event.*;
-
-class MouseL extends Frame {
-    Button b1 = new Button("Ok");
-    Button b2 = new Button("Cancel");
-
-    MouseL() {
-        this.setVisible(true);
-        this.setSize(300, 450);
-        setLayout(new FlowLayout());
-        add(b1);
-        add(b2);
-        setBackground(Color.gray);
-        b1.addMouseListener(new InnerMouseL());
-        b2.addMouseListener(new InnerMouseL());
-        addWindowListener(new win());
-        // pack();
+class exception6{
+    static class MyException extends Exception{
+        MyException(String msg){
+            super(msg);
+        }
     }
 
-    public static void main(String[] args) {
-        new MouseL();
-    }
-}
+    public static void main(String arg[]) throws java.io.IOException, exception6.MyException{
+        java.io.BufferedReader input = new java.io.BufferedReader (new java.io.InputStreamReader(System.in));
+        // declare hashmap
+        java.util.HashMap<Integer, Boolean> map = new java.util.HashMap<Integer, Boolean>();
 
-class win extends WindowAdapter
-{
-    public void windowClosing(java.awt.event.WindowEvent w)
-    {
-        System.exit(10);
-    }
-}
-
-class InnerMouseL extends MouseAdapter {
-    public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getClickCount());
+        try{
+            System.out.print("Enter non repeating numbers : ");
+            String[] list = input.readLine().split(" ");
+            
+            for(String st : list){
+                int num = Integer.parseInt(st);
+                if(map.containsKey(num)){
+                    String err = num + " is repeated in the list";
+                    throw new exception6.MyException(err);
+                } else {
+                    map.put(num, true);
+                }
+            }
+            
+        } catch(java.lang.NumberFormatException e){
+            System.out.println("Invalid input. Please enter a valid number.");
+        }
     }
 }

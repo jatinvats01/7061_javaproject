@@ -1,53 +1,41 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-class Radio_Button implements ActionListener
-{
-	static JRadioButton yes;
-	static JRadioButton no;
-	static JTextField text;
-	
-	public static void main(String args[])
-	{
-		//Create a frame
-		JFrame frame=new JFrame("Radio Button");
-		frame.setSize(500,500);
-		frame.setLayout(null);
-		frame.setBackground(Color.white);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		text=new JTextField();
-		text.setBounds(0,0,500,50);
-		frame.add(text);
-		
-		yes=new JRadioButton("Yes");
-		no=new JRadioButton("No");
-		yes.setBounds(210,100,80,60);
-		no.setBounds(210,200,80,60);
-		frame.add(yes);
-		frame.add(no);
-		
-		Radio_Button obj=new Radio_Button();
-		
-		yes.addActionListener(obj);
-		no.addActionListener(obj);
-		//Display the frame
-		frame.setVisible(true);
-	}
-	
-	public void actionPerformed(ActionEvent e)
-	{
-		String b=e.getActionCommand();		
-		if(b.equals("Yes"))
-		{
-			if(no.isSelected())
-				no.setSelected(false);
-		}
-		else
-		{
-			if(yes.isSelected())
-				yes.setSelected(false);
-		}
-		text.setText("Label of Button Selected : "+b);
-	}
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+class exception4 {
+    class PositiveNumberException extends Exception {
+        public PositiveNumberException(String message) {
+            super(message);
+        }
+    }
+    public static void main(String[] args) {
+        File filename = new File("numbers.txt");
+
+        try {
+            new exception4().checkPositiveNumbers(filename);
+            System.out.println("No positive numbers found.");
+        } catch (PositiveNumberException e) {
+            System.err.println("Exception: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+    }
+
+    void checkPositiveNumbers(File filename) throws IOException, PositiveNumberException {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                int number = Integer.parseInt(line);
+                if (number > 0) {
+                    throw new exception4.PositiveNumberException("Positive number found: " + number);
+                }
+            }
+            reader.close();
+        } catch (FileNotFoundException e){
+            throw new IOException("The specified file was not found.", e);
+        }
+    }
 }
