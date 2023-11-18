@@ -1,0 +1,38 @@
+.bk1{
+    background-color:#0F0E12;
+}
+
+.bk2{
+    background-color:salmon;
+}
+
+.bk3{
+    background-color: rgba(117, 86, 146, 0.292);
+}
+
+h2{
+    color: rgb(235, 106, 106);
+    text-decoration: double;
+}
+
+h3{
+    color: black;
+    text-decoration: dashed;
+    font-style: italic; 
+    font-size: large; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+a{
+    color: sandybrown; 
+    font-style: italic; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.back button{
+    float: right;
+    margin-top: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
