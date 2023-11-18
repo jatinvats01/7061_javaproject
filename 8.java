@@ -1,84 +1,47 @@
-import java.sql.*;
-import java.util.Scanner;
+class prog8 {
+    /*
+     * Topic = Multithread
+     * prog.no 8 Create the program to create multiple threads by using Runnbale
+     * interface
+     */
+    public static void main(String[] args) throws java.lang.ClassNotFoundException {
 
-class ScrollableResultSetExample {
-    public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/chatTest";
-        String username = "root";
-        String password = "";
+        Runnable r1 = new MyRun("This is Thread 1");
+        Runnable r2 = new MyRun("This isThread 2");
+        Runnable r3 = new MyRun("This isThread 3");
 
-        try {
-            Connection connection = DriverManager.getConnection(url, username, password);
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r2);
+        Thread t3 = new Thread(r3);
 
-            // Create a ResultSet that is scrollable and updatable
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM chats");
+        t1.start();
+        t2.start();
+        t3.start();
+    }
 
-            System.out.println("All rows before operations :");
-            while (resultSet.next()) {
-                System.out.println("Id = " + resultSet.getInt("id") + ", username = " + resultSet.getString("username") + ", message = " + resultSet.getString("message"));
+    @Override
+    public String toString() {
+        return "prog1 []";
+    }
+}
+
+class MyRun implements Runnable {
+    private String tn;
+
+    public MyRun(String name) {
+        this.tn = name;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(tn + " - Count is start: " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-
-            Scanner scanner = new Scanner(System.in);
-
-            // Insert a new row
-            System.out.println("Enter values for new row:");
-            System.out.print("Id: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
-            System.out.print("Username: ");
-            String usernameValue = scanner.nextLine();
-            System.out.print("Message: ");
-            String message = scanner.nextLine();
-
-            resultSet.moveToInsertRow();
-            resultSet.updateInt("id", id);
-            resultSet.updateString("username", usernameValue);
-            resultSet.updateString("message", message);
-            resultSet.insertRow();
-
-            // Update an existing row
-            System.out.println("Enter values for row to update:");
-            System.out.print("Id: ");
-            int updateId = scanner.nextInt();
-            scanner.nextLine();
-            System.out.print("New message: ");
-            String newMessage = scanner.nextLine();
-
-            resultSet.beforeFirst();
-            while (resultSet.next()) {
-                if (resultSet.getInt("id") == updateId) {
-                    resultSet.updateString("message", newMessage);
-                    resultSet.updateRow();
-                    break;
-                }
-            }
-
-            // Delete a row
-            System.out.println("Enter id of row to delete:");
-            int deleteId = scanner.nextInt();
-            scanner.nextLine();
-
-            resultSet.beforeFirst();
-            while (resultSet.next()) {
-                if (resultSet.getInt("id") == deleteId) {
-                    resultSet.deleteRow();
-                    break;
-                }
-            }
-
-            scanner.close();
-
-            System.out.println("All rows after operations :");
-            resultSet.beforeFirst();
-            while (resultSet.next()) {
-                System.out.println("Id = " + resultSet.getInt("id") + ", username = " + resultSet.getString("username") + ", message = " + resultSet.getString("message"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("SQLException: " + e.getMessage());
-        } catch (Exception e){
-            System.out.println("Exception: " + e.getMessage());
         }
+        System.out.println(tn + " now running  has finished.");
     }
 }

@@ -1,43 +1,22 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+class MyThread extends Thread {
+    public MyThread(String name, int priority) {
+        super(name);
+        setPriority(priority);
+    }
 
- class prog10 {
-    public static void main(String[] args)  throws ClassNotFoundException{
-        String filePath = "abc.txt"; // Replace with the actual path to your file
+    public void run() {
+        System.out.println("Thread: " + getName() + ", Priority: " + getPriority() + " is running.");
+    }
+}
 
-        try{ 
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            int character;
-            int lineCount = 0;
-            int wordCount = 0;
-            int charCount = 0;
-            boolean inWord = false;
+public class ThreadExample {
+    public static void main(String[] args) {
+        MyThread thread1 = new MyThread("Thread1", Thread.MAX_PRIORITY);
+        MyThread thread2 = new MyThread("Thread2", Thread.NORM_PRIORITY);
+        MyThread thread3 = new MyThread("Thread3", Thread.MIN_PRIORITY);
 
-            while ((character = reader.read()) != -1) {
-                charCount++;
-
-                // Count lines
-                if (character == '\n') {
-                    lineCount++;
-                }
-
-                // Count words
-                if (Character.isWhitespace(character)) {
-                    inWord = false;
-                } else if (!inWord) {
-                    inWord = true;
-                    wordCount++;
-                }
-            }
-
-            // Display statistics
-            System.out.println("Number of lines: " + lineCount);
-            System.out.println("Number of words: " + wordCount);
-            System.out.println("Number of characters: " + charCount);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        thread1.start();
+        thread2.start();
+        thread3.start();
     }
 }
