@@ -1,78 +1,36 @@
-/*Write a Java program to create a class known as "BankAccount" with methods called deposit() and withdraw(). Create a subclass called SavingsAccount that
-overrides the withdraw() method to prevent withdrawals if the account balance falls below one hundred.*/
+import java.util.Scanner;
 
-class BankAccount 
-{
-float bal=0;
+ class prog5 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the console
+        Scanner scanner = new Scanner(System.in);
 
-BankAccount(){}
-BankAccount(float b)
-{
-bal=b;
+        // Prompt the user to enter a double
+        System.out.print("Enter a double: ");
+
+        // Check if the next input is a double
+        if (scanner.hasNextDouble()) {
+            // Read the double from the user
+            double userInput = scanner.nextDouble();
+
+            // Display the entered double
+            System.out.println("You entered: " + userInput);
+
+            // Check if the entered double is positive, negative, or zero
+            if (userInput > 0) {
+                System.out.println("The entered double is positive.");
+            } else if (userInput < 0) {
+                System.out.println("The entered double is negative.");
+            } else {
+                System.out.println("The entered double is zero.");
+            }
+        } else {
+            // If the input is not a double, display an error message
+            System.out.println("Invalid input. Please enter a valid double.");
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
 }
 
-void deposit(int b)
-{
-
-bal=bal+b;
-System.out.println("Amount " +b+ " Successfully deposited\nCurrent balance = " +bal+ "\n");
-}
-
-void withdraw(int b)
-{
-if (b>0 && b<=bal)
-{
-System.out.println("Collect your amount = " +b);
-bal=bal-b;
-System.out.println("Current balance = " +bal+ "\n");
-}
-else
-{
-System.out.println("Insufficient balance");
-}
-}
-}
-
-
-class SavingsAccount extends BankAccount
-{
-
-
-SavingsAccount(float b)
-{
-bal=b;
-}
-
-void withdraw(int b)
-{
-if(bal<100 && bal<b)
-{
-System.out.println("Insufficient balence");
-} 
-else
-{
-System.out.println("Collect your amount = " +b);
-bal=bal-b;
-System.out.println("Current balance = " +bal+ "\n");
-}
-}
-
-
-public static void main(String args[])
-{
-
-BankAccount obj1=new BankAccount(200);
-
-obj1.deposit(100);
-
-obj1.withdraw(300);
-
-
-SavingsAccount obj2=new SavingsAccount(10);
-obj2.withdraw(100);
-
-
-}
-
-
-}

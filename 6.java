@@ -1,22 +1,14 @@
-
-class Animal {
-    public void move() {
-        System.out.println("The animal moves.");
-    }
-}
-
- class Cheetah extends Animal {
-   @Override
-    public void move() {
-        System.out.println("The Cheetah runs.");
-    }
-}
-
-class  Main_c{
-    public static void main(String x[] ) {
-        Animal a = new Animal();
-        Cheetah c = new Cheetah();        
-        a.move();
-        c.move();
-    }
-}
+import java.util.*;  
+class Boolean {    
+    public static void main(String[] args) {         
+           System.out.print("Are you above 18?- ");  
+           Scanner sc = new Scanner(System.in);  
+           boolean bn = sc.nextBoolean();  
+           if (bn == true) {  
+               System.out.println("You are over 18");  
+           } else if (bn == false) {  
+               System.out.println("You are under 18");  
+           }  
+           sc.close();                      
+     }  
+}  

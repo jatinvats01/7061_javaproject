@@ -1,29 +1,17 @@
-/* Write a Java program to create a class called Vehicle with a method called drive(). Create a subclass called Car that overrides the drive() method to print "Repairing a car". */
+import java.io.*;
 
-// Vehicle class
-class Vehicle {
-    public void drive() {
-        System.out.println("Driving a vehicle...");
-    }
-}
+class Buffered_Stream
+{
+  public static void main ( String s[] ) throws IOException
+  {
+    System.out.print ( "Enter the string: " );
 
-// Car subclass extending Vehicle
-class Car extends Vehicle {
-    @Override
-    public void drive() {
-        System.out.println("Repairing a car"); // Car overrides to repair
-    }
-}
+    BufferedReader input = new BufferedReader ( new InputStreamReader ( System.in ) );
 
-class Inheritance2 {
-    public static void main(String[] args) {
-        Vehicle vehicle = new Vehicle(); // Creating an instance of Vehicle
-        Vehicle car = new Car(); // Creating an instance of Car as Vehicle
+    String inputString = input.readLine();
 
-        System.out.println("Driving a vehicle:");
-        vehicle.drive(); // Calling drive() on the vehicle
+  
 
-        System.out.println("\nRepairing a car:");
-        car.drive(); // Calling drive() on the car (which will repair - overridden method)
-    }
+    System.out.println ( "Entered string is: " + inputString );
+  }
 }
