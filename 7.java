@@ -1,26 +1,12 @@
-/*Java Applet to Print Concentric Circles using Applet*/
-import java.applet.*;
-import java.awt.*;
-public class pro7 extends Applet
-{
-    //Initialize the applet
-    public void init()
-    {
-	setBackground(Color.yellow);
-    }
-    //Draw cocentric circle
-    public void paint(Graphics g)
-    {
-	g.setColor(Color.red);
-	int rad=25;
-	int dia=50;
-	for(int i=0;i<4;i++)
-	{
-	    g.drawOval(250-(i*rad),250-(i*rad),(i+1)*dia,(i+1)*dia);
+//Create a simple awt Application that displays a Checkbox with Custom Manager.
+class awt{
+	public static void main(String[] gfdsafgvsds){
+        java.awt.Frame f = new java.awt.Frame();
+        java.awt.Checkbox t = new java.awt.Checkbox("Vipin");
+       f.setLayout(null);
+       t.setBounds(30,100,150,30);
+		f.setSize(100,200);
+		f.setVisible(true);
+		f.add(t);
 	}
-    }
 }
-/*
-<applet code = pro7 width=500 height=500>
-</applet>
-*/

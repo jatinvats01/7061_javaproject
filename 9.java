@@ -1,12 +1,12 @@
-import java.awt.*;
-import java.applet.Applet;
- 
-public class pro9 extends Applet {
- 
-    public void paint(Graphics g)
-    {
-       // draw a ellipse
-        g.drawOval(100, 100, 150, 100);
-    }
+//Create a simple awt Application that displays a Label with CustomLayout manager.
+class awt{
+	public static void main(String[] gfdsafgvsds){
+        java.awt.Frame f = new java.awt.Frame();
+        java.awt.Label t = new java.awt.Label("Vipin");
+       f.setLayout(null);
+       t.setBounds(334,100,150,30);
+		f.setSize(100,200);
+		f.setVisible(true);
+		f.add(t);
+	}
 }
-/*<applet code="pro9" width="500" height="500"></applet> */

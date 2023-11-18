@@ -1,19 +1,24 @@
-import java.applet.Applet;
-import java.awt.*;
+import java.awt.Choice;
+import java.awt.Frame;
+class prog15{
+public static void main(String args[]){
+/* 
+     Topic= Graphical user interface AWT
+     prog.no 15.Create a simple AWT application that displays a List with Custom
+     Layout.
 
-   //<applet code= appro1 width= 600 height=500 ></applet>
-   
-public class appro1 extends Applet 
-{
-  public void paint(Graphics g) 
-   {
-      setBackground(Color.red);
-      g.setColor(Color.yellow);
-      g.fillOval(100, 100, 350, 350);
-      g.setColor(Color.black);
-      g.fillOval(195, 190, 40, 40);
-      g.fillOval(325, 190, 40, 40);
-      g.drawArc(200, 290, 150, 70, 180, 180);
-   }
-
+*/
+Frame f=new Frame("Custom list app");
+ Choice choose =new Choice();
+choose.add("Home");
+choose.add("Office");
+choose.add("Card");
+choose.add("Tables");
+choose.add("Hourse");
+choose.add("Purse");
+choose.add("All");
+f.add(choose);
+f.setSize(300,300);
+f.setVisible(true);
+}
 }

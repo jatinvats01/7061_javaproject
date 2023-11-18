@@ -1,9 +1,12 @@
-import java.applet.*;
-import java.awt.*;
-
-public class pro5 extends Applet {
-    public void paint(Graphics g) {
-        g.drawRect(50, 50, 200, 100);
-    }
+//create  a simple AWT application  that displays a TextField with Custom manager.
+class awt{
+	public static void main(String[] gfdsafgvsds){
+        java.awt.Frame f = new java.awt.Frame();
+        java.awt.TextField t = new java.awt.TextField("Vipin");
+        f.setLayout(null);
+        t.setBounds(30,100,150,30);
+		f.setSize(100,200);
+		f.setVisible(true);
+		f.add(t);
+	}
 }
-/*<applet code="pro5" width="400" height="400"></applet> */

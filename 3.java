@@ -1,15 +1,34 @@
-import java.applet.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Frame;
 
-public class  pro3 extends Applet
-{
-    int x=300,y=100,r=50;
-    public void paint(Graphics g)
-    {
-        g.drawOval(x-r,y-r,100,100);
-        g.drawString("Circle",275,100);
-        
+class AWTButtonExample {
+    public static void main(String[] args) {
+        Frame frame = new Frame("AWT Button Example");
+
        
-   }
+        Button northButton = new Button("North");
+        Button eastButton = new Button("East");
+        Button westButton = new Button("West");
+        Button southButton = new Button("South");
+        Button centerButton = new Button("Center");
+
+       
+        frame.add(northButton, BorderLayout.NORTH);
+        frame.add(eastButton, BorderLayout.EAST);
+        frame.add(westButton, BorderLayout.WEST);
+        frame.add(southButton, BorderLayout.SOUTH);
+        frame.add(centerButton, BorderLayout.CENTER);
+
+        
+        frame.setSize(400, 300);
+        frame.setVisible(true);
+
+       
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                System.exit(0);
+            }
+        });
+    }
 }
-//<applet code= pro3 width= 600 height=500 ></applet>

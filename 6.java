@@ -1,9 +1,11 @@
-import java.applet.*;
-import java.awt.*;
-
-public class pro6 extends Applet {
-    public void paint(Graphics g) {
-        g.drawRect(50, 50, 200, 200);
-    }
+//Create a simple awt Application that displays a Checkbox with flowLayout Manager.
+class awt{
+	public static void main(String[] gfdsafgvsds){
+        java.awt.Frame f = new java.awt.Frame();
+        java.awt.Checkbox t = new java.awt.Checkbox("Vipin");
+       
+		f.setSize(100,200);
+		f.setVisible(true);
+		f.add(t);
+	}
 }
-/*<applet code="pro6" width="400" height="400"></applet> */

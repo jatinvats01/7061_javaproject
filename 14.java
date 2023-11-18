@@ -1,34 +1,44 @@
+// Create a simple AWT application that displays a List with FlowLayout manager. (Program 14)
+// Created by Aryan , Rollno 7070
+// Note : In order to compile and run this program , rename it from "7070Awt14.java" to "Awt14.java"
+
 import java.awt.*;
-import java.applet.Applet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-public class pro14 extends Applet {
-    DateFormat dateFormat;
-    Date date;
-    Thread t;
-    public void init() {
-        this.setSize(300,200);
+import java.awt.event.*;
+
+class Awt14 {
+    private Frame frame;
+    private List myList;
+
+    public Awt14() {
+        frame = new Frame("AWT List Example");
+        myList = new List();
+
+        // Add items to the List
+        myList.add("Item 1");
+        myList.add("Item 2");
+        myList.add("Item 3");
+        myList.add("Item 4");
+        myList.add("Item 5");
+
+        // Set FlowLayout for the frame
+        frame.setLayout(new FlowLayout());
+
+        // Add the List to the frame
+        frame.add(myList);
+
+        // Add a WindowListener to handle closing the frame
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                System.exit(0);
+            }
+        });
+
+        // Set frame properties
+        frame.setSize(300, 200);
+        frame.setVisible(true);
     }
-    public void paint(Graphics g)
-    {
-        try
-        {
-            Font f=new Font("Arial",Font.BOLD,50);
-            g.setFont(f);
-            g.setColor(Color.DARK_GRAY);
-            dateFormat = new SimpleDateFormat("hh:mm:ss a");
-            date = new Date();
-            g.drawString(dateFormat.format(date),5,100);
-            Font f1=new Font("Arial",Font.BOLD,10);
-            g.setFont(f1);
-            t.sleep(1000);
-            repaint();
-        }catch(Exception e)
-        {
-        
-        }
+
+    public static void main(String[] args) {
+        new Awt14();
     }
 }
-/* <applet code = "pro14" height = 500 width =500>  
-   </applet> */
