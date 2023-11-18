@@ -1,55 +1,29 @@
-class TrafficLight {
-     String color;
-     int durationInSeconds;
-    public TrafficLight(String initialColor, int initialDuration) {
-        this.color = initialColor;
-        this.durationInSeconds = initialDuration;
-    }
+MyPackage/MyClass.java
+package MyPackage;
 
-   public void changeColor(String newColor) {
-        color = newColor;
-        System.out.println("Traffic light color changed to " + color);
-    }
+public class MyClass {
+    protected int protectedField;
 
-    public boolean isRed() {
-        return color.equalsIgnoreCase("red");
-    }
-
-    public boolean isGreen() {
-        return color.equalsIgnoreCase("green");
-    }
-
-    public int getDuration() {
-        return durationInSeconds;
-    }
-
-    public void setDuration(int newDuration) {
-        durationInSeconds = newDuration;
-        System.out.println("Traffic light duration set to " + durationInSeconds + " seconds");
+    protected void protectedMethod() {
+        System.out.println("Protected method in MyClass");
     }
 }
+ MyPackage/MyExtendedClass.java
+package MyPackage;
 
- class M3 {
-    public static void main(String[] args) {
-        TrafficLight trafficLight = new TrafficLight("red", 60);
-
-        System.out.println("Initial State:");
-        displayTrafficLightInfo(trafficLight);
-
-        trafficLight.changeColor("green");
-        displayTrafficLightInfo(trafficLight);
-
-        System.out.println("Is it red? " + trafficLight.isRed());
-
-        System.out.println("Is it green? " + trafficLight.isGreen());
-
-        trafficLight.setDuration(45);
-        displayTrafficLightInfo(trafficLight);
+public class MyExtendedClass extends MyClass {
+    public void accessProtectedMembers() {
+        protectedField = 42;  // Access the protected field
+        protectedMethod();   // Access the protected method
+        System.out.println("Value of protectedField: " + protectedField);
     }
+}
+ MainApp.java
+package MyPackage;
 
-    private static void displayTrafficLightInfo(TrafficLight trafficLight) {
-        System.out.println("Current Color: " + trafficLight.color);
-        System.out.println("Current Duration: " + trafficLight.getDuration() + " seconds");
-        System.out.println();
+class Packages_8 {
+    public static void main(String[] args) {
+        MyExtendedClass extendedObj = new MyExtendedClass();
+        extendedObj.accessProtectedMembers();
     }
 }
