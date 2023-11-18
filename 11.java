@@ -1,18 +1,21 @@
-import java.applet.Applet;
-import java.awt.*;
+// Data conversion:- 11. How to convert string to Char.     By(7058/21)
 
-public class pro11 extends Applet {
+import java.util.*;
+
+class STC{
+ public static void main(String args[]){
    
-    public pro11() {
-        setBackground(Color.red);
-    }
-
-    public void paint(java.awt.Graphics g) {
-
-        g.drawString("Background Color Changed", 50, 50);
-    }
-    /*
-     * <applet code="pro11.class" width="300" height="300">
-     * </applet>
-     */
+    String str="Aryan";
+  
+    char [] chr= new char[str.length()];
+     
+    for(int i=0;i<str.length();i++){
+   
+   chr[i]=str.charAt(i);
+   
+}
+for (char c : chr){
+ System.out.println(c);
+}
+}
 }

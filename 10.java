@@ -1,14 +1,12 @@
-import java.applet.Applet;
-import java.awt.*;
-
-
-public class pro10 extends Applet
+import java.util.Date;
+import java.text.SimpleDateFormat;
+class DateToString{
+public static void main(String a[])
 {
-    public void paint(Graphics g){
-        setForeground(Color.red);
-        g.drawArc(10,10,50,100,10,45);
-        g.fillArc(100,10,1000,100,0,90);
-
-    }
+Date date=new Date();
+System.out.println(date);
+SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+String str=s.format(date);
+System.out.println(str);
 }
-/*<applet code="pro10" width="400" height="400"></applet> */
+}

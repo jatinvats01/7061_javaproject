@@ -1,12 +1,15 @@
-//create  a simple AWT application  that displays a TextField with Custom manager.
-class awt{
-	public static void main(String[] gfdsafgvsds){
-        java.awt.Frame f = new java.awt.Frame();
-        java.awt.TextField t = new java.awt.TextField("Vipin");
-        f.setLayout(null);
-        t.setBounds(30,100,150,30);
-		f.setSize(100,200);
-		f.setVisible(true);
-		f.add(t);
-	}
+class StringToFloatExample {
+    public static void main(String[] args) {
+        // Example String containing a floating-point number
+        String floatString = "3.14";
+
+        // Convert String to float using Float.parseFloat()
+        try {
+            float floatValue = Float.parseFloat(floatString);
+            System.out.println("Converted float value: " + floatValue);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid float format in the input string");
+            e.printStackTrace();
+        }
+    }
 }

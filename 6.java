@@ -1,11 +1,13 @@
-//Create a simple awt Application that displays a Checkbox with flowLayout Manager.
-class awt{
-	public static void main(String[] gfdsafgvsds){
-        java.awt.Frame f = new java.awt.Frame();
-        java.awt.Checkbox t = new java.awt.Checkbox("Vipin");
-       
-		f.setSize(100,200);
-		f.setVisible(true);
-		f.add(t);
+
+//How to convert float to String
+public class FloatToString 
+{
+	public static void main(String[] args) 
+	{
+		float f = 10.4f;
+		System.out.println(f + 2);
+		String stringValue = "" + f;
+		System.out.println(stringValue + 2);
 	}
+
 }

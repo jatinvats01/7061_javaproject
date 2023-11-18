@@ -1,12 +1,13 @@
-//Create a simple awt Application that displays a Checkbox with Custom Manager.
-class awt{
-	public static void main(String[] gfdsafgvsds){
-        java.awt.Frame f = new java.awt.Frame();
-        java.awt.Checkbox t = new java.awt.Checkbox("Vipin");
-       f.setLayout(null);
-       t.setBounds(30,100,150,30);
-		f.setSize(100,200);
-		f.setVisible(true);
-		f.add(t);
+package BCA5Practical;
+//How to convert String to double
+public class StringToDouble 
+{
+	public static void main(String[] args) 
+	{
+		String str = "0.5";
+		double D=Double.parseDouble(str);
+		System.out.println("String is "+str);
+		System.out.println("String Converted to an Double "+ D);
+		System.out.println("Showing the String was converted to Double above "+(1+D));
 	}
 }

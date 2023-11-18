@@ -1,34 +1,17 @@
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Frame;
-
-class AWTButtonExample {
+public class StringToLongExample {
     public static void main(String[] args) {
-        Frame frame = new Frame("AWT Button Example");
+        // Sample String
+        String numberString = "123456789";
 
-       
-        Button northButton = new Button("North");
-        Button eastButton = new Button("East");
-        Button westButton = new Button("West");
-        Button southButton = new Button("South");
-        Button centerButton = new Button("Center");
+        try {
+            // Convert String to long
+            long number = Long.parseLong(numberString);
 
-       
-        frame.add(northButton, BorderLayout.NORTH);
-        frame.add(eastButton, BorderLayout.EAST);
-        frame.add(westButton, BorderLayout.WEST);
-        frame.add(southButton, BorderLayout.SOUTH);
-        frame.add(centerButton, BorderLayout.CENTER);
-
-        
-        frame.setSize(400, 300);
-        frame.setVisible(true);
-
-       
-        frame.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                System.exit(0);
-            }
-        });
+            // Print the result
+            System.out.println("Converted long value: " + number);
+        } catch (NumberFormatException e) {
+            System.err.println("Error: Unable to parse the string as a long.");
+            e.printStackTrace();
+        }
     }
 }

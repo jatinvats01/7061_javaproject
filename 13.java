@@ -1,50 +1,36 @@
-import java.awt.*;
-import java.awt.event.*;
- class CustomCheckboxLayoutExample extends Frame {
-    public CustomCheckboxLayoutExample() {
-        setTitle("CheckboxGroup with Custom Layout");
-        setSize(300, 200);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent we) {
-                System.exit(0);
-            }
-        });
-
-        
-        CheckboxPanel checkboxPanel = new CheckboxPanel();
-
-       
-        CheckboxGroup checkboxGroup = new CheckboxGroup();
-
-        Checkbox checkbox1 = new Checkbox("Option 1", checkboxGroup, false);
-        Checkbox checkbox2 = new Checkbox("Option 2", checkboxGroup, false);
-        Checkbox checkbox3 = new Checkbox("Option 3", checkboxGroup, false);
-
-        checkboxPanel.addCheckbox(checkbox1);
-        checkboxPanel.addCheckbox(checkbox2);
-        checkboxPanel.addCheckbox(checkbox3);
-
-        
-        add(checkboxPanel);
-    }
-
+ class prog13{
     public static void main(String[] args) {
-        CustomCheckboxLayoutExample example = new CustomCheckboxLayoutExample();
-        example.setVisible(true);
+        // Convert String to Integer
+        String intStr = "123";
+        int intValue = Integer.parseInt(intStr);
+        System.out.println("Converted Integer: " + intValue);
+
+        // Convert String to Double
+        String doubleStr = "3.14";
+        double doubleValue = Double.parseDouble(doubleStr);
+        System.out.println("Converted Double: " + doubleValue);
+
+        // Convert String to Boolean
+        String boolStr = "true";
+        boolean boolValue = Boolean.parseBoolean(boolStr);
+        System.out.println("Converted Boolean: " + boolValue);
+
+        // Convert String to Custom Object (using Constructor)
+        String customStr = "Hello, World!";
+        CustomObject customObject = new CustomObject(customStr);
+        System.out.println("Converted Custom Object: " + customObject.getData());
     }
-}
 
-class CheckboxPanel extends Panel {
-    private int checkboxCount;
-    private int padding = 10;
+    // Example Custom Object
+    static class CustomObject {
+        private String data;
 
-    public CheckboxPanel() {
-        setLayout(null); // Use a null layout for custom positioning
-    }
+        public CustomObject(String data) {
+            this.data = data;
+        }
 
-    public void addCheckbox(Checkbox checkbox) {
-        checkboxCount++;
-        checkbox.setBounds(padding, checkboxCount * 30, 100, 20);
-        add(checkbox);
+        public String getData() {
+            return data;
+        }
     }
 }
