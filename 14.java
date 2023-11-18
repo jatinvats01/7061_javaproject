@@ -1,19 +1,12 @@
-//Program no. : data conversion 14
-//Program name : How to convert Object to String
-
-class dConversion{
-
-    public static void main(String[] args) {
-        Object obj = new Integer(100);
-        String s = String.valueOf(obj);
-
-        System.out.println(s);
-
-
-      
-        if(s instanceof String){
-            System.out.println("It is string type...");
-        }
-
-    }
+import java.awt.GraphicsEnvironment;
+class Fonts_Available
+{	
+	public static void main(String[] args)
+	{		
+		GraphicsEnvironment local_env; 
+                local_env= GraphicsEnvironment.getLocalGraphicsEnvironment();		
+		String allfonts[] = local_env.getAvailableFontFamilyNames();		
+		for(int i=0;i<allfonts.length;i++)
+			System.out.println(allfonts[i]);
+	}
 }

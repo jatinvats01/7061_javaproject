@@ -1,17 +1,30 @@
-public class StringToLongExample {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class event {
+    static JFrame frame;
+
     public static void main(String[] args) {
-        // Sample String
-        String numberString = "123456789";
+        frame = new JFrame("Button Image");
+        frame.setSize(500, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.white);
+        frame.setLayout(new FlowLayout());
 
-        try {
-            // Convert String to long
-            long number = Long.parseLong(numberString);
+        JButton button = new JButton("Display");
+        frame.add(button);
 
-            // Print the result
-            System.out.println("Converted long value: " + number);
-        } catch (NumberFormatException e) {
-            System.err.println("Error: Unable to parse the string as a long.");
-            e.printStackTrace();
-        }
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ImageIcon icon = new ImageIcon("logo.jpeg");
+                JLabel label = new JLabel(icon);
+                frame.add(label);
+                frame.pack();
+                frame.setSize(500, 500);
+            }
+        });
+
+        frame.setVisible(true);
     }
 }

@@ -1,36 +1,63 @@
- class prog13{
-    public static void main(String[] args) {
-        // Convert String to Integer
-        String intStr = "123";
-        int intValue = Integer.parseInt(intStr);
-        System.out.println("Converted Integer: " + intValue);
-
-        // Convert String to Double
-        String doubleStr = "3.14";
-        double doubleValue = Double.parseDouble(doubleStr);
-        System.out.println("Converted Double: " + doubleValue);
-
-        // Convert String to Boolean
-        String boolStr = "true";
-        boolean boolValue = Boolean.parseBoolean(boolStr);
-        System.out.println("Converted Boolean: " + boolValue);
-
-        // Convert String to Custom Object (using Constructor)
-        String customStr = "Hello, World!";
-        CustomObject customObject = new CustomObject(customStr);
-        System.out.println("Converted Custom Object: " + customObject.getData());
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class Window_Adapter extends WindowAdapter
+{
+    static JFrame frame;
+    
+    public static void main(String args[])
+    {
+      
+        frame=new JFrame("Window Adapter Class");
+        frame.setBackground(Color.white);
+        frame.setSize(500,500);
+      
+        Window_Adapter obj=new Window_Adapter();
+       
+        frame.addWindowListener(obj);
+        frame.setVisible(true);
     }
-
-    // Example Custom Object
-    static class CustomObject {
-        private String data;
-
-        public CustomObject(String data) {
-            this.data = data;
-        }
-
-        public String getData() {
-            return data;
-        }
+   
+    @Override
+    public void windowClosing(WindowEvent e)
+    {   
+        System.out.println("Status of frame : Closing");
+        windowClosed(e);
+    }
+   
+    @Override
+    public void windowClosed(WindowEvent e)
+    {
+        frame.dispose();
+    }
+  
+    @Override
+    public void windowIconified(WindowEvent e)
+    {
+        System.out.println("Status of frame : Iconified");
+    }
+    
+    @Override
+    public void windowDeiconified(WindowEvent e)
+    {
+        System.out.println("Status of frame : Deiconfied");
+    }
+  
+    @Override
+    public void windowActivated(WindowEvent e)
+    {
+        System.out.println("Status of frame : Activated");
+    }
+   
+    @Override
+    public void windowDeactivated(WindowEvent e)
+    {
+        System.out.println("Status of frame : Deactivated");
+    }
+   
+    @Override
+    public void windowOpened(WindowEvent e)
+    {
+        System.out.println("Status of frame : Opened");
     }
 }
