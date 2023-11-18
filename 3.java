@@ -1,31 +1,36 @@
-import java.util.Scanner;
+/*Write a Java program to create a class called Shape with a method called getArea(). Create a subclass called Rectangle that overrides the getArea() method to calculate the area of a rectangle. */
 
-//Write a Java method to display the middle character of a string. Note:
-//a) If the length of the string is odd there will be two middle characters. b) 
-//If the length of the string is even there will be one middle character.
-
-  class function3 {
-  public static void main(String[] args)
-    {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input a string: ");
-        String str = in.nextLine();
-        System.out.print("The middle character in the string: " + middle(str)+"\n");
+// Shape class
+class Shape {
+    public double getArea() {
+        return 0; // Default implementation for unknown shapes
     }
- public static String middle(String str)
-    {
-        int position;
-        int length;
-        if (str.length() % 2 == 0)
-        {
-            position = str.length() / 2 - 1;
-            length = 2;
-        }
-        else
-        {
-            position = str.length() / 2;
-            length = 1;
-        }
-        return str.substring(position, position + length);
+}
+
+// Rectangle subclass extending Shape
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double getArea() {
+        return length * width; // Calculate area of rectangle
+    }
+}
+
+class Inheritance3 {
+    public static void main(String[] args) {
+        Shape shape = new Shape(); // Creating an instance of Shape (will use default getArea())
+
+        Rectangle rectangle = new Rectangle(20, 40); // Creating an instance of Rectangle
+        double rectangleArea = rectangle.getArea(); // Calculating area of rectangle
+
+        System.out.println("Area of a shape (default): " + shape.getArea());
+        System.out.println("Area of a rectangle: " + rectangleArea);
     }
 }

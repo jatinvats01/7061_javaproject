@@ -1,35 +1,43 @@
-import java.util.Scanner;
+//Bird.java
+abstract class Bird {
+  public abstract void fly();
 
-class binarytodecimal {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter a binary number: ");
-        String binaryInput = scanner.nextLine();
-
-        if (!isValidBinary(binaryInput)) {
-            System.out.println("Invalid binary number. Please enter a valid binary number.");
-            return;
-        }
-
-        int decimalResult = binaryToDecimal(binaryInput);
-        System.out.println("Decimal equivalent: " + decimalResult);
-    }
-
-    private static boolean isValidBinary(String binaryInput) {
-        return binaryInput.matches("[01]+");
-    }
-
-    private static int binaryToDecimal(String binaryInput) {
-        int decimalResult = 0;
-        int binaryLength = binaryInput.length();
-
-        for (int i = binaryLength - 1; i >= 0; i--) {
-            int digit = binaryInput.charAt(i) - '0';
-            decimalResult += digit * Math.pow(2, binaryLength - 1 - i);
-        }
-
-        return decimalResult;
-    }
+  public abstract void makeSound();
 }
+//Eagle.java
+class Eagle extends Bird {
+  @Override
+  public void fly() {
+    System.out.println("Eagle: Flying high in the sky.");
+  }
 
+  @Override
+  public void makeSound() {
+    System.out.println("Eagle: Screech! Screech!");
+  }
+}
+//Hawk.java
+class Hawk extends Bird {
+  @Override
+  public void fly() {
+    System.out.println("Hawk: Soaring through the air.");
+  }
+
+  @Override
+  public void makeSound() {
+    System.out.println("Hawk: Caw! Caw!");
+  }
+}
+//Main.java
+class Inheritance_25 {
+  public static void main(String[] args) {
+    Bird eagle = new Eagle();
+    Bird hawk = new Hawk();
+
+    eagle.fly();
+    eagle.makeSound();
+
+    hawk.fly();
+    hawk.makeSound();
+  }
+}

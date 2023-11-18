@@ -1,20 +1,37 @@
-import java.util.Scanner;
-
-class booleantostring {
-    public static void main(String[] a) {
-        Scanner s = new Scanner(System.in);
-
-        System.out.print("Enter a boolean value (true or false): ");
-        String booleanInput = s.nextLine();
-
-        boolean booleanValue = Boolean.parseBoolean(booleanInput);
-        String stringResult = booleanToString(booleanValue);
-
-        System.out.println("String equivalent: " + stringResult);
+abstract class Person {
+    public abstract void eat();
+    public abstract void exercise();
+}
+class Athlete extends Person {
+    public void eat() {
+        System.out.println("Athlete eats a balanced and nutritious diet to fuel their performance.");
+    }
+    public void exercise() {
+        System.out.println("Athlete engages in rigorous training and exercises regularly to stay in top shape.");
+    }
+}
+class LazyPerson extends Person {
+    public void eat() {
+        System.out.println("Lazy person enjoys their favorite snacks and unhealthy food while lounging on the couch.");
     }
 
-    private static String booleanToString(boolean booleanValue) {
-        return String.valueOf(booleanValue);
+    public void exercise() {
+        System.out.println("Lazy person rarely exercises and prefers a sedentary lifestyle.");
+    }
+}
+class inheritance22 {
+    public static void main(String[] args) {
+        Athlete athlete = new Athlete();
+        LazyPerson lazyPerson = new LazyPerson();
+
+        System.out.println("Athlete's Lifestyle:");
+        athlete.eat();
+        athlete.exercise();
+
+        System.out.println("\nLazy Person's Lifestyle:");
+        lazyPerson.eat();
+        lazyPerson.exercise();
+        
     }
 }
 

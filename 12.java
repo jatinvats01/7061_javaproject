@@ -1,24 +1,18 @@
-  
-  class multiplecatch{
- public  static void main(String[] args) {  
-          
-           try{    
-                int a[]=new int[5];    
-                a[5]=30/0;    
-               }    
-               catch(ArithmeticException e)  
-                  {  
-                   System.out.println("Arithmetic Exception occurs");  
-                  }    
-               catch(ArrayIndexOutOfBoundsException e)  
-                  {  
-                   System.out.println("ArrayIndexOutOfBounds Exception occurs");  
-                  }    
-               catch(Exception e)  
-                  {  
-                   System.out.println("Parent Exception occurs");  
-                  }             
+/* Create a program, showing an example of super function */
 
-              System.out.println("rest of the code");
- }
-  }
+class Animal{  
+String color="white";  
+}  
+class Dog extends Animal{  
+String color="brown";  
+void printColor(){  
+System.out.println(color);//prints color of Dog class  
+System.out.println(super.color);//prints color of Animal class  
+}  
+}  
+class TestSuper1{  
+public static void main(String args[]){  
+Dog d=new Dog();  
+d.printColor();  
+}}  
+

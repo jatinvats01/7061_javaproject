@@ -1,22 +1,43 @@
-import java.util.Scanner;
- class check_consecutive { 
- public static void main(String s[] )
-    {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input the first number: ");
-        int x = in.nextInt();
-        System.out.print("Input the second number: ");
-        int y = in.nextInt();
-        System.out.print("Input the third number: ");
-        int z = in.nextInt();
-        System.out.print("The three given numbers are consecutive(true or false) : ") ;
-        System.out.println(test(x,y,z));
-        }
 
- public static boolean test(int x, int y, int z){
-    int max_num = Math.max(x, Math.max(y, z));
-    int min_num = Math.min(x, Math.min(y, z));
-    int middle_num = x+y+z - max_num - min_num;
-    return (max_num - middle_num) == 1 && (middle_num - min_num == 1);
-  }
-} 
+class Animal {
+    String name;
+
+    Animal(String name) {
+        this.name = name;
+    }
+
+    void makeSound() {
+        System.out.println("The animal makes a sound.");
+    }
+}
+
+class Dog extends Animal {
+    String breed;
+
+    Dog(String name, String breed) {
+        super(name); 
+        
+        this.breed = breed;
+    }
+
+    void makeSound() {
+        super.makeSound(); 
+        
+        System.out.println("The dog barks.");
+    }
+
+    void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Breed: " + breed);
+    }
+}
+
+ class demo {
+    public static void main(String[] args) {
+        Dog myDog = new Dog("Buddy", "Golden Retriever");
+        myDog.makeSound(); 
+        
+        System.out.println();
+        myDog.displayInfo();
+    }
+}

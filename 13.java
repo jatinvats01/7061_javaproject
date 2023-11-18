@@ -1,58 +1,34 @@
-/*
- * 
- * Write a Java method that checks whether all the characters in a given string are vowels (a, e,i,o,u) or not. Return true if each character in the string is a vowel, otherwise return false.
-*/
+/*Create a program, showing an example of method overriding */
 
-class Test
-{
-    static boolean isVowel(char c)
-    {
-        if (c == 'a')
-        {
-            return true;
-        }
-        else if (c == 'a')
-        {
-            return true;
-        }
-        else if (c == 'u')
-        {
-            return true;
-        }
-        else if (c == 'e')
-        {
-            return true;
-        }
-        else if (c == 'i')
-        {
-            return true;
-        }
-        else if (c == 'o')
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+class Animal {
+    void makeSound() {
+        System.out.println("The animal makes a sound");
     }
+}
 
-    static boolean isStringInsideVowel(String line)
-    {
-        for (int i = 0; i < line.length(); i++)
-        {
-            if(isVowel(line.charAt(i)))
-            {
-                return true;
-            }
-        }
-        return false;
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("The dog barks");
     }
+}
 
-    public static void main(String args[])
-    {
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("The cat meows");
+    }
+}
 
-        System.out.println(Test.isStringInsideVowel("hello"));
-                System.out.println(Test.isStringInsideVowel("kmnpdk"));
+public class inheritance13_7024 {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        animal.makeSound();
+
+        Dog dog = new Dog();
+        dog.makeSound();
+
+        Cat cat = new Cat();
+        cat.makeSound();
     }
 }

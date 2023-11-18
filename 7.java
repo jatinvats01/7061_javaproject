@@ -1,55 +1,50 @@
-import java.util.Scanner;
+ 
+ //Write a Java program to create a class known as Person with methods called getFirstName() and getLastName(). Create a subclass called Employee that adds a new method named getEmployeeId() and overrides the getLastName() method to include the employee's job title
 
- class Password {
+class Person {
+    private String firstName;
+    private String lastName;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+
+class Employee extends Person {
+    private int employeeId;
+    private String jobTitle;
+
+    public Employee(String firstName, String lastName, int employeeId, String jobTitle) {
+        super(firstName, lastName);
+        this.employeeId = employeeId;
+        this.jobTitle = jobTitle;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
     
-public static final int PASSWORD_LENGTH = 8;
-
-public static void main(String[] args) {
-
-        Scanner input = new Scanner(System.in);
-        System.out.print(
-                "1. A password must have at least eight characters.\n" +
-                "2. A password consists of only letters and digits.\n" +
-                "3. A password must contain at least two digits \n" +
-                "Input a password (You are agreeing to the above Terms and Conditions.): ");
-        String s = input.nextLine();
-
-        if (is_Valid_Password(s)) {
-            System.out.println("Password is valid: " + s);
-        } else {
-            System.out.println("Not a valid password: " + s);
-        }
-
+    public String getLastName() {
+        return super.getLastName() + " (" + jobTitle + ")";
     }
+}
 
-    public static boolean is_Valid_Password(String password) {
+class PersonAndEmployeeExample {
+    public static void main(String[] args) {
+        Person person = new Person("Bharat", "Bhatt");
+        Employee employee = new Employee("Ravi", "Bhatt", 12345, "Software Engineer");
 
-        if (password.length() < PASSWORD_LENGTH) return false;
-
-        int charCount = 0;
-        int numCount = 0;
-        for (int i = 0; i < password.length(); i++) {
-
-            char ch = password.charAt(i);
-
-            if (is_Numeric(ch)) numCount++;
-            else if (is_Letter(ch)) charCount++;
-            else return false;
-        }
-
-
-        return (charCount >= 2 && numCount >= 2);
+        System.out.println("Person: " + person.getFirstName() + " " + person.getLastName());
+        System.out.println("Employee: " + employee.getFirstName() + " " + employee.getLastName() + ", Employee ID: " + employee.getEmployeeId());
     }
-
-    public static boolean is_Letter(char ch) {
-        ch = Character.toUpperCase(ch);
-        return (ch >= 'A' && ch <= 'Z');
-    }
-
-
-    public static boolean is_Numeric(char ch) {
-
-        return (ch >= '0' && ch <= '9');
-    }
-
 }

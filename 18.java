@@ -1,31 +1,43 @@
-import javax.swing.*;
-import java.awt.*;
-import java.lang.Math;
-import java.awt.Graphics.*;
-class dispdots {
-  //Driver function
-  public static void main(String args[]) {
-    //Create a frame
-    JFrame frame = new JFrame("Infinite Dots");
-    frame.setSize(500, 500);
-    frame.getContentPane().setBackground(Color.black);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setVisible(true);
-    /*Draw the dots on frame continuously using method paint 
-                  until the user closes the frame*/
-    while (frame.isVisible()) {
-      paint(frame.getGraphics());
-      try {
-        //Delay by 1ms
-        Thread.sleep(1);
-      } catch (InterruptedException ie) {}
+class Animal {
+    public void eat()
+    {
+        System.out.println("eat method");
+
     }
-  }
-  //function to draw a dot on the frame
-  public static void paint(Graphics g) {
-    g.setColor(Color.green);
-    int x = (int)(Math.random() * 1000) % 500;
-    int y = (int)(Math.random() * 1000) % 500;
-    g.drawLine(x, y, x, y);
-  }
+    public void sleep()
+    {
+        System.out.println("sleep method");
+
+    }
+
+}
+class Bird extends Animal{
+
+    public void eat() {
+        super.eat();
+        System.out.println("overide eat");
+    }
+
+
+    public void sleep() {
+        super.sleep();
+        System.out.println("override sleep");
+    }
+
+    public void fly()
+    {
+        System.out.println("in fly method");
+
+    }
+}
+class Animals{
+    public static void main(String[] args) {
+        Animal a =new Animal();
+        Bird b = new Bird();
+        a.eat();
+        a.sleep();
+        b.eat();
+        b.sleep();
+        b.fly();
+    }
 }

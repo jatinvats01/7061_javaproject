@@ -1,24 +1,31 @@
-import java.awt.Choice;
-import java.awt.Frame;
-class prog15{
-public static void main(String args[]){
-/* 
-     Topic= Graphical user interface AWT
-     prog.no 15.Create a simple AWT application that displays a List with Custom
-     Layout.
-
-*/
-Frame f=new Frame("Custom list app");
- Choice choose =new Choice();
-choose.add("Home");
-choose.add("Office");
-choose.add("Card");
-choose.add("Tables");
-choose.add("Hourse");
-choose.add("Purse");
-choose.add("All");
-f.add(choose);
-f.setSize(300,300);
-f.setVisible(true);
+// Define the abstract class Animal
+abstract class Animal {
+    abstract void sound(); // Abstract method for making a sound
 }
+
+// Subclass Lion
+class Lion extends Animal {
+    @Override
+    void sound() {
+        System.out.println("The lion roars");
+    }
+}
+
+// Subclass Tiger
+class Tiger extends Animal {
+    @Override
+    void sound() {
+        System.out.println("The tiger growls");
+    }
+}
+
+// Main class to test the implementation
+ class inheritance15 {
+    public static void main(String[] args) {
+        Animal lion = new Lion();
+        Animal tiger = new Tiger();
+
+        lion.sound(); // Output: The lion roars
+        tiger.sound(); // Output: The tiger growls
+    }
 }

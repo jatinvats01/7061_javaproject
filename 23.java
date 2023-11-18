@@ -1,15 +1,43 @@
-import java.sql.Timestamp;
-import java.util.Date;
+//Instrument.java
+abstract class Instrument {
+  public abstract void play();
 
-class DateToTimestampExample {
-    public static void main(String[] args) {
-        // Create a Date object
-        Date date = new Date();
+  public abstract void tune();
+}
+//Glockenspiel.java
+class Glockenspiel extends Instrument {
+  @Override
+  public void play() {
+    System.out.println("Glockenspiel: Playing the notes on the metal bars.");
+  }
 
-        // Convert the Date to a Timestamp
-        Timestamp timestamp = new Timestamp(date.getTime());
+  @Override
+  public void tune() {
+    System.out.println("Glockenspiel: Tuning the metal bars to the correct pitch.");
+  }
+}
+//Violin.java
+class Violin extends Instrument {
+  @Override
+  public void play() {
+    System.out.println("Violin: Playing the strings with a bow or fingers.");
+  }
 
-        System.out.println("Date: " + date);
-        System.out.println("Timestamp: " + timestamp);
-    }
+  @Override
+  public void tune() {
+    System.out.println("Violin: Tuning the strings to the correct pitch.");
+  }
+}
+//Main.java
+class Inheritance_23 {
+  public static void main(String[] args) {
+    Instrument glockenspiel = new Glockenspiel();
+    Instrument violin = new Violin();
+
+    glockenspiel.play();
+    glockenspiel.tune();
+
+    violin.play();
+    violin.tune();
+  }
 }

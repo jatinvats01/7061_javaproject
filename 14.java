@@ -1,12 +1,17 @@
-import java.awt.GraphicsEnvironment;
-class Fonts_Available
-{	
-	public static void main(String[] args)
-	{		
-		GraphicsEnvironment local_env; 
-                local_env= GraphicsEnvironment.getLocalGraphicsEnvironment();		
-		String allfonts[] = local_env.getAvailableFontFamilyNames();		
-		for(int i=0;i<allfonts.length;i++)
-			System.out.println(allfonts[i]);
-	}
+class Std {
+      public void print(){
+            System.out.println("Student details.");
+      }
+}
+ 
+class ClgStd extends Std {
+      public void print(){
+            System.out.println("College Student details.");
+      }
+
+      public static void main(String s[]){
+  
+       Std a = new ClgStd();
+        a.print();
+  }
 }

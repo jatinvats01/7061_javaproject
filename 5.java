@@ -1,26 +1,78 @@
-import java.util.Scanner;
- class FutureInvestment {
- 
- public static void main(String[] args) {
-    Scanner in = new Scanner(System.in); 
-    System.out.print("Input the investment amount: ");
- 	double investment = in.nextDouble();
- 	System.out.print("Input the rate of interest: ");
-	double rate = in.nextDouble();
-	System.out.print("Input number of years: ");
-	int year = in.nextInt();
-	
-	rate *= 0.01;
-	
-	System.out.println("Years    FutureValue");
-	for(int i = 1; i <= year; i++) {
-    	int formatter = 19;
-	    if (i >= 10) formatter = 18;
-		System.out.printf(i + "%"+formatter+".2f\n", futureInvestmentValue(investment, rate/12, i));
-       }
-	 }
- 
- public static double futureInvestmentValue(double investmentAmount, double monthlyInterestRate, int years) {
-		return investmentAmount * Math.pow(1 + monthlyInterestRate, years * 12);
-	}
+/*Write a Java program to create a class known as "BankAccount" with methods called deposit() and withdraw(). Create a subclass called SavingsAccount that
+overrides the withdraw() method to prevent withdrawals if the account balance falls below one hundred.*/
+
+class BankAccount 
+{
+float bal=0;
+
+BankAccount(){}
+BankAccount(float b)
+{
+bal=b;
+}
+
+void deposit(int b)
+{
+
+bal=bal+b;
+System.out.println("Amount " +b+ " Successfully deposited\nCurrent balance = " +bal+ "\n");
+}
+
+void withdraw(int b)
+{
+if (b>0 && b<=bal)
+{
+System.out.println("Collect your amount = " +b);
+bal=bal-b;
+System.out.println("Current balance = " +bal+ "\n");
+}
+else
+{
+System.out.println("Insufficient balance");
+}
+}
+}
+
+
+class SavingsAccount extends BankAccount
+{
+
+
+SavingsAccount(float b)
+{
+bal=b;
+}
+
+void withdraw(int b)
+{
+if(bal<100 && bal<b)
+{
+System.out.println("Insufficient balence");
+} 
+else
+{
+System.out.println("Collect your amount = " +b);
+bal=bal-b;
+System.out.println("Current balance = " +bal+ "\n");
+}
+}
+
+
+public static void main(String args[])
+{
+
+BankAccount obj1=new BankAccount(200);
+
+obj1.deposit(100);
+
+obj1.withdraw(300);
+
+
+SavingsAccount obj2=new SavingsAccount(10);
+obj2.withdraw(100);
+
+
+}
+
+
 }
